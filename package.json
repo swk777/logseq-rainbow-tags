@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./index.html --public-url ./",
-    "build": "parcel build --public-url . --no-source-maps index.html"
+    "build": "parcel build --public-url . --no-source-maps --no-cache index.html"
   },
   "devDependencies": {
     "@logseq/libs": "latest",
