@@ -16,6 +16,6 @@
   "logseq": {
     "id": "logseq_rainbow_tags",
     "main": "dist/index.html",
-    "icon": "./logo.png"
+    "icon": "./icon.png"
   }
 }
