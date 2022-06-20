@@ -1,4 +1,4 @@
-## Pomodoro Timer Sample
+## Logseq Rainbow Tags
 
 What's it? https://en.wikipedia.org/wiki/Pomodoro_Technique
 
