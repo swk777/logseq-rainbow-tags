@@ -1,8 +1,8 @@
 {
   "name": "logseq-rainbow-tags",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "highlight tags in logseq",
-  "author": "©Charlie",
+  "author": "swk777",
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./index.html --public-url ./",
