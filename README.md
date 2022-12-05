@@ -1,5 +1,5 @@
 
-# logseq-block-panels
+# logseq-block-panel
 > Color blocks that contain some tags. Emphasize blocks like panels.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-rainbow-blocks)](https://github.com/YU000jp/logseq-rainbow-blocks/releases)
