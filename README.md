@@ -1,12 +1,21 @@
-# logseq-rainbow-tags
-> Highlight your tags with rainbow colors
 
-[![latest release version](https://img.shields.io/github/v/release/swk777/logseq-rainbow-tags)](https://github.com/swk777/logseq-rainbow-tags/releases)
-[![License](https://img.shields.io/github/license/swk777/logseq-rainbow-tags?color=blue)](https://github.com/swk777/logseq-rainbow-tags/blob/main/LICENSE)
+# logseq-block-panels
+> Color blocks that contain some tags. Emphasize blocks like panels.
 
+[![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-rainbow-blocks)](https://github.com/YU000jp/logseq-rainbow-blocks/releases)
+[![License](https://img.shields.io/github/license/YU000jp/logseq-rainbow-blocks?color=blue)](https://github.com/YU000jp/logseq-rainbow-blocks/blob/main/LICENSE)
+
+
+## Demo
 
 ![demo](./demo.png)
 
 ## 🎨 Settings
 
 ![settings](./settings.png)
+
+
+
+## Credit
+
+<https://github.com/swk777/logseq-rainbow-tags>
