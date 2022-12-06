@@ -13,9 +13,9 @@
           🟠#WARNING
           🟡#CAUTION
           🟢#SUCCESS
-          🔵#NOTICE / #INFO
+          🔵#NOTICE / #INFO / #memo
           🟣#QUESTION
-          🟤#NOTE
+          🟤#REPORT / #NOTE / #REVIEW
 
 ## Demo
 
