@@ -46,7 +46,15 @@ export const settingUI = () => {
                 enumChoices: ["enable", "disable"],
                 enumPicker: "radio",
                 default: "enable",
-                description: "#note #important #notice #caution #warning #danger #tip.",
+                description: `
+                🔴#FAILED, 
+                🟠#WARNING, 
+                🟡#CAUTION, 
+                🟢#SUCCESS, 
+                🔵#NOTICE / #INFO / #memo, 
+                🟣#QUESTION, 
+                🟤#REPORT / #NOTE / #REVIEW
+                `,
             }
         );
 

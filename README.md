@@ -5,6 +5,16 @@
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-rainbow-blocks)](https://github.com/YU000jp/logseq-rainbow-blocks/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-rainbow-blocks?color=blue)](https://github.com/YU000jp/logseq-rainbow-blocks/blob/main/LICENSE)
 
+## Admonitions
+
+        1.  🔴#FAILED
+        1.  🟠#WARNING
+        1.  🟡#CAUTION
+        1.  🟢#SUCCESS
+        1.  🔵#NOTICE / #INFO
+        1.  🟣#QUESTION
+        1.  🟤#NOTE
+
 ## Demo
 
 ![demo](./demo.png)
