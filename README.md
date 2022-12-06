@@ -19,9 +19,15 @@
 
 ## Demo
 
+> Light Theme
+
 ![En](https://user-images.githubusercontent.com/111847207/205900410-888cda0e-020c-4b83-96ea-5793414803f0.png)
 
+> Dark Theme
+
 ![スクリーンショット 2022-12-06 184340](https://user-images.githubusercontent.com/111847207/205900451-27ef0d6d-adbb-4e8f-86ea-eb5bf1a20320.png)
+
+> As the outline gets deeper, a rainbow appears on the right side.
 
 ![image](https://user-images.githubusercontent.com/111847207/205902934-21140e61-7ec2-41c7-b89a-834bb5719392.png)
 
