@@ -44,4 +44,4 @@
 
 <https://github.com/nmartin84/admonition-panels>
 
-[https://icooon.mono.com/](https://icooon-mono.com/11095-%e6%9e%a0%e3%81%a4%e3%81%8d%e3%81%ae%e7%be%bd%e6%a0%b9%e3%83%9a%e3%83%b3%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
+<https://glyphs.fyi/dir?i=venn&v=poly&w>
