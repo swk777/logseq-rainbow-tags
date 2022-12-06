@@ -7,6 +7,8 @@
 
 ## Admonitions
 
+> Nest with the tag as the parent. Combining two tags will make them invalid. It is possible to have a panel within a panel.
+
           🔴#FAILED
           🟠#WARNING
           🟡#CAUTION
@@ -21,7 +23,14 @@
 
 ![スクリーンショット 2022-12-06 184340](https://user-images.githubusercontent.com/111847207/205900451-27ef0d6d-adbb-4e8f-86ea-eb5bf1a20320.png)
 
+![image](https://user-images.githubusercontent.com/111847207/205902934-21140e61-7ec2-41c7-b89a-834bb5719392.png)
+
+
 ## 🎨 Settings
+
+> Please reboot Logseq to reflect styles.
+
+> In addition to the original tag, you can set up to 6 tags.
 
 ![image](https://user-images.githubusercontent.com/111847207/205900502-1e6d4617-5442-46f5-b835-f1bd0ce0c123.png)
 
