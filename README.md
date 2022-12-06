@@ -40,8 +40,8 @@
 
 ## Prior art & Credit
 
-<https://github.com/swk777/logseq-rainbow-tags> (Forked)
+[swk777/logseq-rainbow-tags](https://github.com/swk777/logseq-rainbow-tags)
 
-<https://github.com/nmartin84/admonition-panels>
+[nmartin84/admonition-panels](https://github.com/nmartin84/admonition-panels)
 
-<https://glyphs.fyi/dir?i=venn&v=poly&w>
+[icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
