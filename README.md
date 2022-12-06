@@ -7,21 +7,23 @@
 
 ## Admonitions
 
-        1.  🔴#FAILED
-        1.  🟠#WARNING
-        1.  🟡#CAUTION
-        1.  🟢#SUCCESS
-        1.  🔵#NOTICE / #INFO
-        1.  🟣#QUESTION
-        1.  🟤#NOTE
+          🔴#FAILED
+          🟠#WARNING
+          🟡#CAUTION
+          🟢#SUCCESS
+          🔵#NOTICE / #INFO
+          🟣#QUESTION
+          🟤#NOTE
 
 ## Demo
 
-![demo](./demo.png)
+![En](https://user-images.githubusercontent.com/111847207/205900410-888cda0e-020c-4b83-96ea-5793414803f0.png)
+
+![スクリーンショット 2022-12-06 184340](https://user-images.githubusercontent.com/111847207/205900451-27ef0d6d-adbb-4e8f-86ea-eb5bf1a20320.png)
 
 ## 🎨 Settings
 
-![settings](./settings.png)
+![image](https://user-images.githubusercontent.com/111847207/205900502-1e6d4617-5442-46f5-b835-f1bd0ce0c123.png)
 
 ## Prior art & Credit
 
