@@ -118,26 +118,26 @@ const refreshSettings = (e) => {
 
     /* #caution */
     main div#main-content-container a.tag[data-ref="caution"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(248,180,0,0.7);
+        background: rgba(248, 180, 0, 0.7);
     }
     
     main div#main-content-container div[data-refs-self='["caution"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(248,180,0, 0.1);
-        outline       : 3px solid rgba(248,180,0,0.8);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(248, 180, 0, 0.1);
+        outline: 3px solid rgba(248, 180, 0, 0.8);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["caution"]']::before {
-        content  : "🟡";
+        content: "🟡";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
     
     div.dark-theme main div#main-content-container a.tag[data-ref="caution"] {
@@ -146,109 +146,114 @@ const refreshSettings = (e) => {
     
     div.dark-theme main div#main-content-container div[data-refs-self='["caution"]'] {
         background: rgba(255, 248, 220, 0.1);
-        outline   : 3px solid rgba(255, 248, 220, 0.7);
+        outline: 3px solid rgba(255, 248, 220, 0.7);
     }
+    
     /* end #caution */
     
     /* #success */
     main div#main-content-container a.tag[data-ref="success"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(42, 178, 123, 0.6);
+        background: rgba(42, 178, 123, 0.6);
     }
     
     main div#main-content-container div[data-refs-self='["success"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(42, 178, 123, 0.1);
-        outline       : 3px solid rgba(42, 178, 123, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(42, 178, 123, 0.1);
+        outline: 3px solid rgba(42, 178, 123, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["success"]']::before {
-        content  : "🟢";
+        content: "🟢";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #success */
     
     /* #warning */
     main div#main-content-container a.tag[data-ref="warning"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(255, 127, 80, 0.7);
+        background: rgba(255, 127, 80, 0.7);
     }
     
     main div#main-content-container div[data-refs-self='["warning"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(255, 127, 80, 0.1);
-        outline       : 3px solid rgba(255, 127, 80, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(255, 127, 80, 0.1);
+        outline: 3px solid rgba(255, 127, 80, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["warning"]']::before {
-        content  : "🟠";
+        content: "🟠";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #warning */
     
     
     /* #failed */
     main div#main-content-container a.tag[data-ref="failed"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(220,20,60, 0.5);
+        background: rgba(220, 20, 60, 0.5);
     }
     
     main div#main-content-container div[data-refs-self='["failed"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(220,20,60, 0.1);
-        outline       : 3px solid rgba(220,20,60, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(220, 20, 60, 0.1);
+        outline: 3px solid rgba(220, 20, 60, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["failed"]']::before {
-        content  : "🔴";
+        content: "🔴";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #failed */
     
     /* #QUESTION */
     main div#main-content-container a.tag[data-ref="question"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(147,112,219, 0.5);
+        background: rgba(147, 112, 219, 0.5);
     }
     
     main div#main-content-container div[data-refs-self='["question"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(147,112,219, 0.1);
-        outline       : 3px solid rgba(147,112,219, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(147, 112, 219, 0.1);
+        outline: 3px solid rgba(147, 112, 219, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["question"]']::before {
-        content  : "🟣";
+        content: "🟣";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #failed */
     
     
@@ -256,72 +261,74 @@ const refreshSettings = (e) => {
     main div#main-content-container a.tag[data-ref="report"],
     main div#main-content-container a.tag[data-ref="note"],
     main div#main-content-container a.tag[data-ref="review"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(160,82,45, 0.5);
+        background: rgba(160, 82, 45, 0.5);
     }
     
     main div#main-content-container div[data-refs-self='["report"]'],
     main div#main-content-container div[data-refs-self='["note"]'],
     main div#main-content-container div[data-refs-self='["review"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(160,82,45, 0.1);
-        outline       : 3px solid rgba(160,82,45, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(160, 82, 45, 0.1);
+        outline: 3px solid rgba(160, 82, 45, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["report"]']::before,
     main div#main-content-container div[data-refs-self='["note"]']::before,
     main div#main-content-container div[data-refs-self='["review"]']::before {
-        content  : "🟤";
+        content: "🟤";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #REPORT */
     
     /* #NOTICE #NOTE #memo */
     main div#main-content-container a.tag[data-ref="notice"],
     main div#main-content-container a.tag[data-ref="info"],
     main div#main-content-container a.tag[data-ref="memo"] {
-        color        : inherit;
-        padding      : 2px;
+        color: inherit;
+        padding: 2px;
         border-radius: 3px;
-        background   : rgba(30,144,255, 0.5);
+        background: rgba(30, 144, 255, 0.5);
     }
     
     main div#main-content-container div[data-refs-self='["notice"]'],
     main div#main-content-container div[data-refs-self='["info"]'],
     main div#main-content-container div[data-refs-self='["memo"]'] {
-        padding       : 0.8em;
-        border-radius : 20px;
-        background    : rgba(30,144,255, 0.1);
-        outline       : 3px solid rgba(30,144,255, 0.7);
+        padding: 0.8em;
+        border-radius: 20px;
+        background: rgba(30, 144, 255, 0.1);
+        outline: 3px solid rgba(30, 144, 255, 0.7);
         outline-offset: 3px;
     }
     
     main div#main-content-container div[data-refs-self='["notice"]']::before,
     main div#main-content-container div[data-refs-self='["info"]']::before,
     main div#main-content-container div[data-refs-self='["memo"]']::before {
-        content  : "🔵";
+        content: "🔵";
         font-size: 20px;
-        position : absolute;
-        right    : 10px;
-        top      : 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }
+    
     /* end #NOTICE #NOTE #memo */
     
     /*
-    🔴FAILED OK
-    🟠WARNING OK
-    🟡CAUTION OK
-    🟢SUCCESS OK
-    🔵NOTICE / INFO / memo OK
-    🟣QUESTION OK
-    🟤REPORT / NOTE / REVIEW OK
+    🔴FAILED
+    🟠WARNING
+    🟡CAUTION
+    🟢SUCCESS
+    🔵NOTICE / INFO / memo
+    🟣QUESTION
+    🟤REPORT / NOTE / REVIEW
     */
 
   `);

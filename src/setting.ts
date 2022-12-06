@@ -95,7 +95,7 @@ export const settingUI = () => {
             },
             {
                 key: "stylesheet",
-                title: "",
+                title: "custom tags",
                 inputAs: "textarea",
                 type: "string",
                 default: "",
