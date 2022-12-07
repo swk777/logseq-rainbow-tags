@@ -46,3 +46,8 @@
 [nmartin84/admonition-panels](https://github.com/nmartin84/admonition-panels)
 
 [icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
+
+---
+
+<a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
+
