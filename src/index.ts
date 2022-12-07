@@ -76,7 +76,25 @@ const refreshSettings = (e) => {
   const thisStyle = settingArray.map(generateTagStyle).join("\n");
   logseq.provideStyle(thisStyle);
   logseq.updateSettings({ stylesheet: thisStyle });
-  //TODO
+
+  //Logseq bugs fix
+  logseq.provideStyle(String.raw`
+      /* Fix "Extra space when journal queries are not active #6773" */
+      div#journals div#today-queries>div.lazy-visibility {
+        min-height: unset !important;
+    }
+
+    /* journal queries */
+    div#journals div#today-queries>div.lazy-visibility>div.shadow {
+        display: none;
+    }
+
+    /* background conflict journal queries */
+    div#journals div#today-queries div.color-level div.blocks-container,
+    div#journals div#today-queries div.color-level {
+        background-color: unset;
+    }
+  `);
   //set rainbow-journal
   const SettingRainbowJournal: string = settings.rainbowJournal;
   if (SettingRainbowJournal === "enable") {
