@@ -79,19 +79,21 @@ const refreshSettings = (e) => {
 
   //Logseq bugs fix
   logseq.provideStyle(String.raw`
-      /* Fix "Extra space when journal queries are not active #6773" */
-      div#journals div#today-queries>div.lazy-visibility {
+    /* Logseq bugs fix */
+    
+    /* Fix "Extra space when journal queries are not active #6773" */
+    body[data-page="home"] div#today-queries>div.lazy-visibility {
         min-height: unset !important;
     }
-
-    /* journal queries */
-    div#journals div#today-queries>div.lazy-visibility>div.shadow {
+    
+    /* journal queries No shadow */
+    body[data-page="home"] div#today-queries>div.lazy-visibility>div.shadow {
         display: none;
     }
-
+    
     /* background conflict journal queries */
-    div#journals div#today-queries div.color-level div.blocks-container,
-    div#journals div#today-queries div.color-level {
+    body[data-page="home"] div#today-queries div.color-level div.blocks-container,
+    body[data-page="home"] div#today-queries div.color-level {
         background-color: unset;
     }
   `);

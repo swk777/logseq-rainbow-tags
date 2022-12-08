@@ -1,3 +1,4 @@
+import "@logseq/libs";
 import { SettingSchemaDesc } from "@logseq/libs/dist/LSPlugin";
 export const settingUI = () => {
     /* https://logseq.github.io/plugins/types/SettingSchemaDesc.html */
