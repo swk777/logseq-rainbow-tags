@@ -9,14 +9,14 @@
 
 > Nest with the tag as the parent. Combining two tags will make them invalid. It is possible to have a panel within a panel.
 
-    🔴#FAILED
-    🟠#WARNING
-    🟡#CAUTION / #DECLARATION
-    🟢#SUCCESS / #FACTS
-    🔵#NOTICE / #INFO / #memo / #LEARNED
-    🟣#QUESTION / #DISCOVERY
-    🟤#REPORT / #NOTE / #REVIEW
-    add DECLARATION FACTS DISCOVERY LEARNED (update 2022/12/13)
+    🔴FAILED / REMEDY
+    🟠WARNING / LEARNED
+    🟡CAUTION / DECLARATION
+    🟢SUCCESS / FACTS
+    🔵NOTICE / INFO / memo
+    🟣QUESTION / DISCOVERY
+    🟤REPORT / NOTE / REVIEW
+    add DECLARATION FACTS DISCOVERY LEARNED REMEDY (update 2022/12/13)
 
 ## Demo
 

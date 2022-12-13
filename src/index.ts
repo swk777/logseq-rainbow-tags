@@ -207,16 +207,18 @@ const refreshSettings = (e) => {
 
     /* end #success */
     
-    /* #warning */
+    /* #warning #learned */
 
-    main div#main-content-container a.tag[data-ref="warning"] {
+    main div#main-content-container a.tag[data-ref="warning"],
+    main div#main-content-container a.tag[data-ref="learned"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(255, 127, 80, 0.7);
     }
     
-    main div#main-content-container div[data-refs-self='["warning"]'] {
+    main div#main-content-container div[data-refs-self='["warning"]'],
+    main div#main-content-container div[data-refs-self='["learned"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(255, 127, 80, 0.1);
@@ -224,7 +226,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["warning"]']::before {
+    main div#main-content-container div[data-refs-self='["warning"]']::before,
+    main div#main-content-container div[data-refs-self='["learned"]']::before {
         content: "🟠";
         font-size: 20px;
         position: absolute;
@@ -234,15 +237,17 @@ const refreshSettings = (e) => {
     /* end #warning */
     
     
-    /* #failed */
-    main div#main-content-container a.tag[data-ref="failed"] {
+    /* #failed #remedy */
+    main div#main-content-container a.tag[data-ref="failed"],
+    main div#main-content-container a.tag[data-ref="remedy"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(220, 20, 60, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["failed"]'] {
+    main div#main-content-container div[data-refs-self='["failed"]'],
+    main div#main-content-container div[data-refs-self='["remedy"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(220, 20, 60, 0.1);
@@ -250,7 +255,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["failed"]']::before {
+    main div#main-content-container div[data-refs-self='["failed"]']::before,
+    main div#main-content-container div[data-refs-self='["remedy"]']::before {
         content: "🔴";
         font-size: 20px;
         position: absolute;
@@ -322,11 +328,10 @@ const refreshSettings = (e) => {
     
     /* end #REPORT */
     
-    /* #NOTICE #NOTE #memo #learned */
+    /* #NOTICE #NOTE #memo */
     main div#main-content-container a.tag[data-ref="notice"],
     main div#main-content-container a.tag[data-ref="info"],
-    main div#main-content-container a.tag[data-ref="memo"],
-    main div#main-content-container a.tag[data-ref="learned"] {
+    main div#main-content-container a.tag[data-ref="memo"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
@@ -335,8 +340,7 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]'],
     main div#main-content-container div[data-refs-self='["info"]'],
-    main div#main-content-container div[data-refs-self='["memo"]'],
-    main div#main-content-container div[data-refs-self='["learned"]'] {
+    main div#main-content-container div[data-refs-self='["memo"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(30, 144, 255, 0.1);
@@ -346,8 +350,7 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]']::before,
     main div#main-content-container div[data-refs-self='["info"]']::before,
-    main div#main-content-container div[data-refs-self='["memo"]']::before,
-    main div#main-content-container div[data-refs-self='["learned"]']::before {
+    main div#main-content-container div[data-refs-self='["memo"]']::before {
         content: "🔵";
         font-size: 20px;
         position: absolute;
@@ -358,14 +361,14 @@ const refreshSettings = (e) => {
     /* end #NOTICE #NOTE #memo */
     
     /*
-    🔴FAILED
-    🟠WARNING
+    🔴FAILED / REMEDY
+    🟠WARNING / LEARNED
     🟡CAUTION / DECLARATION
     🟢SUCCESS / FACTS
-    🔵NOTICE / INFO / memo / LEARNED
+    🔵NOTICE / INFO / memo
     🟣QUESTION / DISCOVERY
     🟤REPORT / NOTE / REVIEW
-    add DECLARATION FACTS DISCOVERY LEARNED
+    add DECLARATION FACTS DISCOVERY LEARNED BAD
     */
 
   `);

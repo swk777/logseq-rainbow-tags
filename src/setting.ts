@@ -48,11 +48,11 @@ export const settingUI = () => {
                 enumPicker: "radio",
                 default: "enable",
                 description: `
-                🔴#FAILED, 
-                🟠#WARNING, 
+                🔴#FAILED / #REMEDY, 
+                🟠#WARNING / #LEARNED, 
                 🟡#CAUTION / #DECLARATION, 
                 🟢#SUCCESS / #FACTS, 
-                🔵#NOTICE / #INFO / #memo / #LEARNED, 
+                🔵#NOTICE / #INFO / #memo, 
                 🟣#QUESTION / #DISCOVERY, 
                 🟤#REPORT / #NOTE / #REVIEW
                 `,
