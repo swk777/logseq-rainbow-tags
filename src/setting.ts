@@ -63,17 +63,17 @@ export const settingUI = () => {
             settingArray.push(
                 {
                     key: `heading00${idx}`,
-                    title: `Custom tag(#) No. ${idx}`,
+                    title: `Custom #tag (${idx})`,
                     type: "heading",
                     default: "",
                     description: "",
                 },
                 {
                     key: `tn${idx}`,
-                    title: `set tag name *`,
+                    title: `set #tag name *`,
                     type: "string",
                     default: `tag${idx}`,
-                    description: "",
+                    description: "without #",
                 },
                 {
                     key: `tc${idx}`,
