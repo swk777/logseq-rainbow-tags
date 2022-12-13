@@ -13,10 +13,9 @@
     🟠WARNING / LEARNED
     🟡CAUTION / DECLARATION
     🟢SUCCESS / FACTS
-    🔵NOTICE / INFO / memo
+    🔵NOTICE / INFO / REVIEW
     🟣QUESTION / DISCOVERY
-    🟤REPORT / NOTE / REVIEW
-    add DECLARATION FACTS DISCOVERY LEARNED REMEDY (update 2022/12/13)
+    🟤REPORT / NOTE
 
 ## Demo
 

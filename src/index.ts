@@ -328,10 +328,10 @@ const refreshSettings = (e) => {
     
     /* end #REPORT */
     
-    /* #NOTICE #NOTE #memo */
+    /* #NOTICE #NOTE #review */
     main div#main-content-container a.tag[data-ref="notice"],
     main div#main-content-container a.tag[data-ref="info"],
-    main div#main-content-container a.tag[data-ref="memo"] {
+    main div#main-content-container a.tag[data-ref="review"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
@@ -340,7 +340,7 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]'],
     main div#main-content-container div[data-refs-self='["info"]'],
-    main div#main-content-container div[data-refs-self='["memo"]'] {
+    main div#main-content-container div[data-refs-self='["review"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(30, 144, 255, 0.1);
@@ -350,7 +350,7 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]']::before,
     main div#main-content-container div[data-refs-self='["info"]']::before,
-    main div#main-content-container div[data-refs-self='["memo"]']::before {
+    main div#main-content-container div[data-refs-self='["review"]']::before {
         content: "🔵";
         font-size: 20px;
         position: absolute;
@@ -358,16 +358,16 @@ const refreshSettings = (e) => {
         top: 10px;
     }
     
-    /* end #NOTICE #NOTE #memo */
+    /* end #NOTICE */
     
     /*
     🔴FAILED / REMEDY
     🟠WARNING / LEARNED
     🟡CAUTION / DECLARATION
     🟢SUCCESS / FACTS
-    🔵NOTICE / INFO / memo
+    🔵NOTICE / INFO / REVIEW
     🟣QUESTION / DISCOVERY
-    🟤REPORT / NOTE / REVIEW
+    🟤REPORT / NOTE
     add DECLARATION FACTS DISCOVERY LEARNED BAD
     */
 

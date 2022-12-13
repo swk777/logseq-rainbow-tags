@@ -52,9 +52,9 @@ export const settingUI = () => {
                 🟠#WARNING / #LEARNED, 
                 🟡#CAUTION / #DECLARATION, 
                 🟢#SUCCESS / #FACTS, 
-                🔵#NOTICE / #INFO / #memo, 
+                🔵#NOTICE / #INFO / #REVIEW, 
                 🟣#QUESTION / #DISCOVERY, 
-                🟤#REPORT / #NOTE / #REVIEW
+                🟤#REPORT / #NOTE
                 `,
             }
         );
