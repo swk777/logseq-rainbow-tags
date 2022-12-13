@@ -136,15 +136,18 @@ const refreshSettings = (e) => {
   if (SettingAdmonitions === "enable") {
     logseq.provideStyle(String.raw`
 
-    /* #caution */
-    main div#main-content-container a.tag[data-ref="caution"] {
+    /* #caution #declaration */
+
+    main div#main-content-container a.tag[data-ref="caution"],
+    main div#main-content-container a.tag[data-ref="declaration"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(248, 180, 0, 0.7);
     }
     
-    main div#main-content-container div[data-refs-self='["caution"]'] {
+    main div#main-content-container div[data-refs-self='["caution"]'],
+    main div#main-content-container div[data-refs-self='["declaration"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(248, 180, 0, 0.1);
@@ -152,7 +155,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["caution"]']::before {
+    main div#main-content-container div[data-refs-self='["caution"]']::before,
+    main div#main-content-container div[data-refs-self='["declaration"]']::before {
         content: "🟡";
         font-size: 20px;
         position: absolute;
@@ -160,26 +164,31 @@ const refreshSettings = (e) => {
         top: 10px;
     }
     
-    div.dark-theme main div#main-content-container a.tag[data-ref="caution"] {
+    div.dark-theme main div#main-content-container a.tag[data-ref="caution"],
+    div.dark-theme main div#main-content-container a.tag[data-ref="declaration"] {
         background: rgba(255, 248, 220, 0.3);
     }
     
-    div.dark-theme main div#main-content-container div[data-refs-self='["caution"]'] {
+    div.dark-theme main div#main-content-container div[data-refs-self='["caution"]'],
+    div.dark-theme main div#main-content-container div[data-refs-self='["declaration"]'] {
         background: rgba(255, 248, 220, 0.1);
         outline: 3px solid rgba(255, 248, 220, 0.7);
     }
-    
+
     /* end #caution */
     
-    /* #success */
-    main div#main-content-container a.tag[data-ref="success"] {
+    /* #success #facts */
+
+    main div#main-content-container a.tag[data-ref="success"],
+    main div#main-content-container a.tag[data-ref="facts"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(42, 178, 123, 0.6);
     }
     
-    main div#main-content-container div[data-refs-self='["success"]'] {
+    main div#main-content-container div[data-refs-self='["success"]'],
+    main div#main-content-container div[data-refs-self='["facts"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(42, 178, 123, 0.1);
@@ -187,17 +196,19 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["success"]']::before {
+    main div#main-content-container div[data-refs-self='["success"]']::before,
+    main div#main-content-container div[data-refs-self='["facts"]']::before {
         content: "🟢";
         font-size: 20px;
         position: absolute;
         right: 10px;
         top: 10px;
     }
-    
+
     /* end #success */
     
     /* #warning */
+
     main div#main-content-container a.tag[data-ref="warning"] {
         color: inherit;
         padding: 2px;
@@ -220,7 +231,6 @@ const refreshSettings = (e) => {
         right: 10px;
         top: 10px;
     }
-    
     /* end #warning */
     
     
@@ -250,15 +260,17 @@ const refreshSettings = (e) => {
     
     /* end #failed */
     
-    /* #QUESTION */
-    main div#main-content-container a.tag[data-ref="question"] {
+    /* #question #discovery */
+    main div#main-content-container a.tag[data-ref="question"],
+    main div#main-content-container a.tag[data-ref="discovery"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(147, 112, 219, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["question"]'] {
+    main div#main-content-container div[data-refs-self='["question"]'],
+    main div#main-content-container div[data-refs-self='["discovery"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(147, 112, 219, 0.1);
@@ -266,7 +278,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["question"]']::before {
+    main div#main-content-container div[data-refs-self='["question"]']::before,
+    main div#main-content-container div[data-refs-self='["discovery"]']::before {
         content: "🟣";
         font-size: 20px;
         position: absolute;
@@ -309,10 +322,11 @@ const refreshSettings = (e) => {
     
     /* end #REPORT */
     
-    /* #NOTICE #NOTE #memo */
+    /* #NOTICE #NOTE #memo #learned */
     main div#main-content-container a.tag[data-ref="notice"],
     main div#main-content-container a.tag[data-ref="info"],
-    main div#main-content-container a.tag[data-ref="memo"] {
+    main div#main-content-container a.tag[data-ref="memo"],
+    main div#main-content-container a.tag[data-ref="learned"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
@@ -321,7 +335,8 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]'],
     main div#main-content-container div[data-refs-self='["info"]'],
-    main div#main-content-container div[data-refs-self='["memo"]'] {
+    main div#main-content-container div[data-refs-self='["memo"]'],
+    main div#main-content-container div[data-refs-self='["learned"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(30, 144, 255, 0.1);
@@ -331,7 +346,8 @@ const refreshSettings = (e) => {
     
     main div#main-content-container div[data-refs-self='["notice"]']::before,
     main div#main-content-container div[data-refs-self='["info"]']::before,
-    main div#main-content-container div[data-refs-self='["memo"]']::before {
+    main div#main-content-container div[data-refs-self='["memo"]']::before,
+    main div#main-content-container div[data-refs-self='["learned"]']::before {
         content: "🔵";
         font-size: 20px;
         position: absolute;
@@ -344,11 +360,12 @@ const refreshSettings = (e) => {
     /*
     🔴FAILED
     🟠WARNING
-    🟡CAUTION
-    🟢SUCCESS
-    🔵NOTICE / INFO / memo
-    🟣QUESTION
+    🟡CAUTION / DECLARATION
+    🟢SUCCESS / FACTS
+    🔵NOTICE / INFO / memo / LEARNED
+    🟣QUESTION / DISCOVERY
     🟤REPORT / NOTE / REVIEW
+    add DECLARATION FACTS DISCOVERY LEARNED
     */
 
   `);

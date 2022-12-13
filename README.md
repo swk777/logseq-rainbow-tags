@@ -9,13 +9,14 @@
 
 > Nest with the tag as the parent. Combining two tags will make them invalid. It is possible to have a panel within a panel.
 
-          🔴#FAILED
-          🟠#WARNING
-          🟡#CAUTION
-          🟢#SUCCESS
-          🔵#NOTICE / #INFO / #memo
-          🟣#QUESTION
-          🟤#REPORT / #NOTE / #REVIEW
+    🔴#FAILED
+    🟠#WARNING
+    🟡#CAUTION / #DECLARATION
+    🟢#SUCCESS / #FACTS
+    🔵#NOTICE / #INFO / #memo / #LEARNED
+    🟣#QUESTION / #DISCOVERY
+    🟤#REPORT / #NOTE / #REVIEW
+    add DECLARATION FACTS DISCOVERY LEARNED (update 2022/12/13)
 
 ## Demo
 
@@ -34,7 +35,6 @@
 ## 🎨 Settings
 
 > Please reboot Logseq to reflect styles.
-
 > In addition to the original tag, it is possible to set up to 6 tags.
 
 ![image](https://user-images.githubusercontent.com/111847207/205900502-1e6d4617-5442-46f5-b835-f1bd0ce0c123.png)
@@ -49,5 +49,4 @@
 
 ---
 
-<a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
-
+[![🍌Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-violet.png)](https://www.buymeacoffee.com/yu000japan)

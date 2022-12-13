@@ -50,10 +50,10 @@ export const settingUI = () => {
                 description: `
                 🔴#FAILED, 
                 🟠#WARNING, 
-                🟡#CAUTION, 
-                🟢#SUCCESS, 
-                🔵#NOTICE / #INFO / #memo, 
-                🟣#QUESTION, 
+                🟡#CAUTION / #DECLARATION, 
+                🟢#SUCCESS / #FACTS, 
+                🔵#NOTICE / #INFO / #memo / #LEARNED, 
+                🟣#QUESTION / #DISCOVERY, 
                 🟤#REPORT / #NOTE / #REVIEW
                 `,
             }
