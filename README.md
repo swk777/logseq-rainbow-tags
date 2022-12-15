@@ -21,11 +21,11 @@
 
 > Light Theme
 
-![En](https://user-images.githubusercontent.com/111847207/205900410-888cda0e-020c-4b83-96ea-5793414803f0.png)
+![image](https://user-images.githubusercontent.com/111847207/207467377-e307a412-b9c1-4889-b110-3f69e3f00007.png)
 
 > Dark Theme
 
-![スクリーンショット 2022-12-06 184340](https://user-images.githubusercontent.com/111847207/205900451-27ef0d6d-adbb-4e8f-86ea-eb5bf1a20320.png)
+![image](https://user-images.githubusercontent.com/111847207/207467439-26c7a35a-4cb7-4f60-8807-68d1832d4656.png)
 
 > As the outline gets deeper, a rainbow appears on the right side.
 
