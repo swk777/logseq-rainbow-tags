@@ -9,13 +9,13 @@ interface ITag {
 }
 
 const generateTagStyle = (tag: ITag) => `
-div#main-content-container a.tag[data-ref="${tag.name}"] {
+div#app-container a.tag[data-ref="${tag.name}"] {
   color: inherit;
   padding: 2px;
   border-radius: 3px;
   background: ${hex2rgba(tag.color, 0.3)};
 }
-div#main-content-container div[data-refs-self*="${tag.name}"] {
+div#app-container div[data-refs-self*="${tag.name}"] {
   padding: 0.8em;
   border-radius: 20px;
   background: ${hex2rgba(tag.color, 0.15)};
@@ -23,10 +23,10 @@ div#main-content-container div[data-refs-self*="${tag.name}"] {
   outline-offset: 3px;
 }
 /* dark-mode */
-div#main-content-container a.tag[data-ref="${tag.name}"] {
+div#app-container a.tag[data-ref="${tag.name}"] {
   background: ${hex2rgba(tag.color, 0.3)};
 }
-div#main-content-container div[data-refs-self*="${tag.name}"] {
+div#app-container div[data-refs-self*="${tag.name}"] {
   background: ${hex2rgba(tag.color, 0.15)};
   outline: 3px solid ${hex2rgba(tag.color, 0.7)};
 }
@@ -101,31 +101,31 @@ const refreshSettings = (e) => {
   const SettingRainbowJournal: string = settings.rainbowJournal;
   if (SettingRainbowJournal === "enable") {
     logseq.provideStyle(String.raw`
-  div#main-content-container div.block-children [level="3"] {
+  div#app-container div.block-children [level="3"] {
       border-right: 4px solid #ff00005c;
   }
   
-  div#main-content-container div.block-children [level="4"] {
+  div#app-container div.block-children [level="4"] {
       border-right: 6px solid #ec87225e;
   }
   
-  div#main-content-container div.block-children [level="5"] {
+  div#app-container div.block-children [level="5"] {
       border-right: 8px solid #ffff0052;
   }
   
-  div#main-content-container div.block-children [level="6"] {
+  div#app-container div.block-children [level="6"] {
       border-right: 10px solid #65d95b7a;
   }
   
-  div#main-content-container div.block-children [level="7"] {
+  div#app-container div.block-children [level="7"] {
       border-right: 12px solid #2ca0df5e;
   }
   
-  div#main-content-container div.block-children [level="8"] {
+  div#app-container div.block-children [level="8"] {
       border-right: 14px solid #9f8af061;
   }
   
-  div#main-content-container div.block-children [level="9"] {
+  div#app-container div.block-children [level="9"] {
       border-right: 16px solid #f15bf74f;
   }
   `);
@@ -138,16 +138,16 @@ const refreshSettings = (e) => {
 
     /* #caution #declaration */
 
-    main div#main-content-container a.tag[data-ref="caution"],
-    main div#main-content-container a.tag[data-ref="declaration"] {
+    main div#app-container a.tag[data-ref="caution"],
+    main div#app-container a.tag[data-ref="declaration"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(248, 180, 0, 0.7);
     }
     
-    main div#main-content-container div[data-refs-self='["caution"]'],
-    main div#main-content-container div[data-refs-self='["declaration"]'] {
+    main div#app-container div[data-refs-self='["caution"]'],
+    main div#app-container div[data-refs-self='["declaration"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(248, 180, 0, 0.1);
@@ -155,8 +155,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["caution"]']::before,
-    main div#main-content-container div[data-refs-self='["declaration"]']::before {
+    main div#app-container div[data-refs-self='["caution"]']::before,
+    main div#app-container div[data-refs-self='["declaration"]']::before {
         content: "🟡";
         font-size: 20px;
         position: absolute;
@@ -164,13 +164,13 @@ const refreshSettings = (e) => {
         top: 10px;
     }
     
-    div.dark-theme main div#main-content-container a.tag[data-ref="caution"],
-    div.dark-theme main div#main-content-container a.tag[data-ref="declaration"] {
+    div.dark-theme main div#app-container a.tag[data-ref="caution"],
+    div.dark-theme main div#app-container a.tag[data-ref="declaration"] {
         background: rgba(255, 248, 220, 0.3);
     }
     
-    div.dark-theme main div#main-content-container div[data-refs-self='["caution"]'],
-    div.dark-theme main div#main-content-container div[data-refs-self='["declaration"]'] {
+    div.dark-theme main div#app-container div[data-refs-self='["caution"]'],
+    div.dark-theme main div#app-container div[data-refs-self='["declaration"]'] {
         background: rgba(255, 248, 220, 0.1);
         outline: 3px solid rgba(255, 248, 220, 0.7);
     }
@@ -179,16 +179,16 @@ const refreshSettings = (e) => {
     
     /* #success #facts */
 
-    main div#main-content-container a.tag[data-ref="success"],
-    main div#main-content-container a.tag[data-ref="facts"] {
+    main div#app-container a.tag[data-ref="success"],
+    main div#app-container a.tag[data-ref="facts"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(42, 178, 123, 0.6);
     }
     
-    main div#main-content-container div[data-refs-self='["success"]'],
-    main div#main-content-container div[data-refs-self='["facts"]'] {
+    main div#app-container div[data-refs-self='["success"]'],
+    main div#app-container div[data-refs-self='["facts"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(42, 178, 123, 0.1);
@@ -196,8 +196,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["success"]']::before,
-    main div#main-content-container div[data-refs-self='["facts"]']::before {
+    main div#app-container div[data-refs-self='["success"]']::before,
+    main div#app-container div[data-refs-self='["facts"]']::before {
         content: "🟢";
         font-size: 20px;
         position: absolute;
@@ -209,16 +209,16 @@ const refreshSettings = (e) => {
     
     /* #warning #learned */
 
-    main div#main-content-container a.tag[data-ref="warning"],
-    main div#main-content-container a.tag[data-ref="learned"] {
+    main div#app-container a.tag[data-ref="warning"],
+    main div#app-container a.tag[data-ref="learned"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(255, 127, 80, 0.7);
     }
     
-    main div#main-content-container div[data-refs-self='["warning"]'],
-    main div#main-content-container div[data-refs-self='["learned"]'] {
+    main div#app-container div[data-refs-self='["warning"]'],
+    main div#app-container div[data-refs-self='["learned"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(255, 127, 80, 0.1);
@@ -226,8 +226,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["warning"]']::before,
-    main div#main-content-container div[data-refs-self='["learned"]']::before {
+    main div#app-container div[data-refs-self='["warning"]']::before,
+    main div#app-container div[data-refs-self='["learned"]']::before {
         content: "🟠";
         font-size: 20px;
         position: absolute;
@@ -238,16 +238,16 @@ const refreshSettings = (e) => {
     
     
     /* #failed #remedy */
-    main div#main-content-container a.tag[data-ref="failed"],
-    main div#main-content-container a.tag[data-ref="remedy"] {
+    main div#app-container a.tag[data-ref="failed"],
+    main div#app-container a.tag[data-ref="remedy"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(220, 20, 60, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["failed"]'],
-    main div#main-content-container div[data-refs-self='["remedy"]'] {
+    main div#app-container div[data-refs-self='["failed"]'],
+    main div#app-container div[data-refs-self='["remedy"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(220, 20, 60, 0.1);
@@ -255,8 +255,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["failed"]']::before,
-    main div#main-content-container div[data-refs-self='["remedy"]']::before {
+    main div#app-container div[data-refs-self='["failed"]']::before,
+    main div#app-container div[data-refs-self='["remedy"]']::before {
         content: "🔴";
         font-size: 20px;
         position: absolute;
@@ -267,16 +267,16 @@ const refreshSettings = (e) => {
     /* end #failed */
     
     /* #question #discovery */
-    main div#main-content-container a.tag[data-ref="question"],
-    main div#main-content-container a.tag[data-ref="discovery"] {
+    main div#app-container a.tag[data-ref="question"],
+    main div#app-container a.tag[data-ref="discovery"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(147, 112, 219, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["question"]'],
-    main div#main-content-container div[data-refs-self='["discovery"]'] {
+    main div#app-container div[data-refs-self='["question"]'],
+    main div#app-container div[data-refs-self='["discovery"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(147, 112, 219, 0.1);
@@ -284,8 +284,8 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["question"]']::before,
-    main div#main-content-container div[data-refs-self='["discovery"]']::before {
+    main div#app-container div[data-refs-self='["question"]']::before,
+    main div#app-container div[data-refs-self='["discovery"]']::before {
         content: "🟣";
         font-size: 20px;
         position: absolute;
@@ -297,18 +297,18 @@ const refreshSettings = (e) => {
     
     
     /* #REPORT */
-    main div#main-content-container a.tag[data-ref="report"],
-    main div#main-content-container a.tag[data-ref="note"],
-    main div#main-content-container a.tag[data-ref="review"] {
+    main div#app-container a.tag[data-ref="report"],
+    main div#app-container a.tag[data-ref="note"],
+    main div#app-container a.tag[data-ref="review"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(160, 82, 45, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["report"]'],
-    main div#main-content-container div[data-refs-self='["note"]'],
-    main div#main-content-container div[data-refs-self='["review"]'] {
+    main div#app-container div[data-refs-self='["report"]'],
+    main div#app-container div[data-refs-self='["note"]'],
+    main div#app-container div[data-refs-self='["review"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(160, 82, 45, 0.1);
@@ -316,9 +316,9 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["report"]']::before,
-    main div#main-content-container div[data-refs-self='["note"]']::before,
-    main div#main-content-container div[data-refs-self='["review"]']::before {
+    main div#app-container div[data-refs-self='["report"]']::before,
+    main div#app-container div[data-refs-self='["note"]']::before,
+    main div#app-container div[data-refs-self='["review"]']::before {
         content: "🟤";
         font-size: 20px;
         position: absolute;
@@ -329,18 +329,18 @@ const refreshSettings = (e) => {
     /* end #REPORT */
     
     /* #NOTICE #NOTE #review */
-    main div#main-content-container a.tag[data-ref="notice"],
-    main div#main-content-container a.tag[data-ref="info"],
-    main div#main-content-container a.tag[data-ref="review"] {
+    main div#app-container a.tag[data-ref="notice"],
+    main div#app-container a.tag[data-ref="info"],
+    main div#app-container a.tag[data-ref="review"] {
         color: inherit;
         padding: 2px;
         border-radius: 3px;
         background: rgba(30, 144, 255, 0.5);
     }
     
-    main div#main-content-container div[data-refs-self='["notice"]'],
-    main div#main-content-container div[data-refs-self='["info"]'],
-    main div#main-content-container div[data-refs-self='["review"]'] {
+    main div#app-container div[data-refs-self='["notice"]'],
+    main div#app-container div[data-refs-self='["info"]'],
+    main div#app-container div[data-refs-self='["review"]'] {
         padding: 0.8em;
         border-radius: 20px;
         background: rgba(30, 144, 255, 0.1);
@@ -348,9 +348,9 @@ const refreshSettings = (e) => {
         outline-offset: 3px;
     }
     
-    main div#main-content-container div[data-refs-self='["notice"]']::before,
-    main div#main-content-container div[data-refs-self='["info"]']::before,
-    main div#main-content-container div[data-refs-self='["review"]']::before {
+    main div#app-container div[data-refs-self='["notice"]']::before,
+    main div#app-container div[data-refs-self='["info"]']::before,
+    main div#app-container div[data-refs-self='["review"]']::before {
         content: "🔵";
         font-size: 20px;
         position: absolute;
