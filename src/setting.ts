@@ -56,7 +56,15 @@ export const settingUI = () => {
                 🟣#QUESTION / #DISCOVERY, 
                 🟤#REPORT / #NOTE
                 `,
-            }
+            },
+            {
+                key: `bulletClosedColor`,
+                title: `choice closed-bullet color *`,
+                type: "string",
+                default: "f8b400",
+                description: "",
+                inputAs: "color",
+            },
         );
 
         [1, 2, 3, 4, 5, 6].forEach((idx) => {
@@ -82,7 +90,7 @@ export const settingUI = () => {
                     default: rainbowColor[idx - 1],
                     description: "",
                     inputAs: "color",
-                }
+                },
             );
         });
 
@@ -101,7 +109,7 @@ export const settingUI = () => {
                 type: "string",
                 default: "",
                 description: "",
-            }
+            },
         );
 
         return settingArray;

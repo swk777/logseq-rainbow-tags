@@ -97,6 +97,7 @@ const refreshSettings = (e) => {
         background-color: unset;
     }
   `);
+
   //set rainbow-journal
   const SettingRainbowJournal: string = settings.rainbowJournal;
   if (SettingRainbowJournal === "enable") {
@@ -130,6 +131,28 @@ const refreshSettings = (e) => {
   }
   `);
   }
+
+
+  //set BulletClosed
+  const SettingBulletClosedColor: string = settings.bulletClosedColor;
+  console.log(SettingBulletClosedColor);
+  const bulletClosedStyle: string = `
+  div#app-container span.bullet {
+    height: 9px;
+    width: 9px;
+    border-radius: 40%;
+    opacity: 0.6;
+    transition: unset !important;
+}
+
+div#app-container span.bullet-container.bullet-closed {
+    height: 11px;
+    width: 11px;
+    outline: 5px solid ${hex2rgba(SettingBulletClosedColor,0.6)};
+}  
+  `;
+    logseq.provideStyle(bulletClosedStyle);
+    console.log(bulletClosedStyle);
 
   //set admonitions
   const SettingAdmonitions: string = settings.admonitions;
