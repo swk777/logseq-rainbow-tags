@@ -34,9 +34,10 @@
 ## 🎨 Settings
 
 > Please reboot Logseq to reflect styles.
-> In addition to the original tag, it is possible to set up to 6 tags.
 
-![image](https://user-images.githubusercontent.com/111847207/207296453-3601052c-58aa-4e0d-9bd0-e4d6c890c033.png)
+ In addition to the original tag, it is possible to set up to 6 tags.
+
+![image](https://user-images.githubusercontent.com/111847207/209455323-10b2d77c-05c3-4f28-ad60-4c8b93cc0e95.png)
 
 ## Prior art & Credit
 
