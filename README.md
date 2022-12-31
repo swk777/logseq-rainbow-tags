@@ -17,6 +17,12 @@
     🟣QUESTION / DISCOVERY
     🟤REPORT / NOTE
 
+### Admonition Selector
+
+- slash command => `/select admonition panel`
+
+- bullet contextmenu => `select admonition`
+
 ## Demo
 
 > Light Theme
