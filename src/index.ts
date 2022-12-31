@@ -2,6 +2,7 @@ import "@logseq/libs";
 import { settingUI } from './setting';
 import { logseq as PL } from "../package.json";
 const pluginId = PL.id;
+import Swal from 'sweetalert2';
 
 interface ITag {
   name: string;
@@ -148,11 +149,11 @@ const refreshSettings = (e) => {
 div#app-container span.bullet-container.bullet-closed {
     height: 11px;
     width: 11px;
-    outline: 5px solid ${hex2rgba(SettingBulletClosedColor,0.6)};
+    outline: 5px solid ${hex2rgba(SettingBulletClosedColor, 0.6)};
 }  
   `;
-    logseq.provideStyle(bulletClosedStyle);
-    console.log(bulletClosedStyle);
+  logseq.provideStyle(bulletClosedStyle);
+  console.log(bulletClosedStyle);
 
   //set admonitions
   const SettingAdmonitions: string = settings.admonitions;
@@ -424,14 +425,74 @@ const main = () => {
 `,
   });
 
+
+  /* Block slash command */
+  logseq.Editor.registerSlashCommand('🔴🟠🟡🟢🔵🟣🟤 Select Admonition panel', async (e) => {
+    const uuid = e.uuid;
+    selectAdmonition(uuid);
+  });
+
+  /* Block ContextMenuItem  */
+  logseq.Editor.registerBlockContextMenuItem('🔴🟠🟡🟢🔵Select Admonition', async (e) => {
+    const uuid = e.uuid;
+    selectAdmonition(uuid);
+  });
+
+
   console.info(`#${pluginId}: loaded`);
 };
 
+
+
+function selectAdmonition(uuid) {
+  const block = logseq.Editor.getBlock(uuid);
+  logseq.showMainUI();
+  Swal.fire({
+    text: 'Select Admonition panel',
+    input: 'select',
+    inputOptions: {
+      FAILED: "🔴Failed",
+      REMEDY: "🔴Remedy",
+      WARNING: "🟠Warning",
+      LEARNED: "🟠Learned",
+      CAUTION: "🟡Caution",
+      DECLARATION: "🟡Declaration",
+      SUCCESS: "🟢Success",
+      FACTS: "🟢Facts",
+      NOTICE: "🔵Notice",
+      INFO: "🔵Info",
+      REVIEW: "🔵Review",
+      QUESTION: "🟣Question",
+      DISCOVERY: "🟣Discovery",
+      REPORT: "🟤Report",
+      NOTE: "🟤Note",
+    },
+    inputPlaceholder: 'Select a tag',
+    showCancelButton: true,
+  }).then((answer) => {
+    if (answer) {
+      const { value: tag } = answer;
+      if (tag) {
+        logseq.Editor.getBlock(uuid).then((e) => {
+          if (e) {
+            const content = "#" + tag + " " + e.content;
+            logseq.Editor.updateBlock(uuid, content);
+          }
+        });
+      }
+    }
+    logseq.hideMainUI();
+  });
+}
+
+
 const model = {
+  //toolbar onclick
   open_color_settings() {
     logseq.showSettingsUI();
   },
 };
+
 
 // bootstrap
 logseq.ready(model, main).catch(console.error);
