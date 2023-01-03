@@ -18,22 +18,8 @@ export const settingUI = () => {
         //rainbow-right-border
         settingArray.push(
             {
-                key: "heading00",
-                title: "*Please reboot Logseq to reflect styles.",
-                type: "heading",
-                default: "",
-                description: "",
-            },
-            {
-                key: "heading01",
-                title: "Custom style",
-                type: "heading",
-                default: "",
-                description: "",
-            },
-            {
                 key: "rainbowJournal",
-                title: "right border *",
+                title: "right border",
                 type: "enum",
                 enumChoices: ["enable", "disable"],
                 enumPicker: "radio",
@@ -42,7 +28,7 @@ export const settingUI = () => {
             },
             {
                 key: "admonitions",
-                title: "admonitions by tags *",
+                title: "admonitions by tags",
                 type: "enum",
                 enumChoices: ["enable", "disable"],
                 enumPicker: "radio",
@@ -56,6 +42,13 @@ export const settingUI = () => {
                 🟣#QUESTION / #DISCOVERY, 
                 🟤#REPORT / #NOTE
                 `,
+            },
+            {
+                key: "heading00",
+                title: "*Please reboot Logseq to reflect styles. [shortcut ⌨️ `ctrl(cmd) + r`]",
+                type: "heading",
+                default: "",
+                description: "",
             },
             {
                 key: `bulletClosedColor`,
