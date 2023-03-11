@@ -1,6 +1,6 @@
 # logseq-plugin-panel-coloring
 
-> Color blocks that contain some tags. Emphasize blocks like panels.
+> Emphasize tagged blocks like a panel.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-panel-coloring)](https://github.com/YU000jp/logseq-plugin-panel-coloring/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-panel-coloring?color=blue)](https://github.com/YU000jp/logseq-plugin-panel-coloring/blob/main/LICENSE)
@@ -46,8 +46,6 @@
 ![image](https://user-images.githubusercontent.com/111847207/205902934-21140e61-7ec2-41c7-b89a-834bb5719392.png)
 
 ## 🎨 Settings
-
-> Please reboot Logseq to reflect styles.
 
  In addition to the original tag, it is possible to set up to 6 tags.
 
