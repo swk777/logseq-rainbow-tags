@@ -5,6 +5,14 @@
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-panel-coloring)](https://github.com/YU000jp/logseq-plugin-panel-coloring/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-panel-coloring?color=blue)](https://github.com/YU000jp/logseq-plugin-panel-coloring/blob/main/LICENSE)
 
+## New Function ** COME SOON
+
+### Page coloring (title and contents)
+
+ ![image](https://user-images.githubusercontent.com/111847207/224491982-9f85909c-f016-45dc-8d22-c4e6fd17057c.png)
+
+
+
 ## Admonitions
 
 > Nest with the tag as the parent. Combining two tags will make them invalid. It is possible to have a panel within a panel.
