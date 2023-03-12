@@ -4,28 +4,14 @@ export const settingUI = () => {
     /* https://logseq.github.io/plugins/types/SettingSchemaDesc.html */
 
     const rainbowColor = [
-        "#F77998",
-        "#FA8A8B",
-        "#EFD76C",
-        "#7AD874",
-        "#7BC4D0",
-        "#9887C5",
+        "#37306B", "#66347F", "#9E4784", "#D27685", "#9DC08B", "#609966", "#40513B", "#060047", "#B3005E", "#E90064", "#FF5F9E", "#E21818"
     ];
 
     const generateSettings = () => {
         const settingArray = [] as SettingSchemaDesc[];
 
-        //rainbow-right-border
+        //option
         settingArray.push(
-            {
-                key: "rainbowJournal",
-                title: "right border",
-                type: "enum",
-                enumChoices: ["enable", "disable"],
-                enumPicker: "radio",
-                default: "enable",
-                description: "Color according to nesting depth.",
-            },
             {
                 key: "admonitions",
                 title: "admonitions by tags",
@@ -44,66 +30,90 @@ export const settingUI = () => {
                 `,
             },
             {
-                key: "heading00",
-                title: "*Please reboot Logseq to reflect styles. [shortcut ⌨️ `ctrl(cmd) + r`]",
-                type: "heading",
-                default: "",
-                description: "",
+                key: "rainbowJournal",
+                title: "outline right border",
+                type: "enum",
+                enumChoices: ["enable", "disable"],
+                enumPicker: "radio",
+                default: "enable",
+                description: "Color according to nesting depth.",
+            },
+            {
+                key: "todayJournal",
+                title: "today & yesterday journal coloring",
+                type: "enum",
+                enumChoices: ["enable", "disable"],
+                enumPicker: "radio",
+                default: "disable",
+                description: "background-color: yellow & green (**light theme only)",
             },
             {
                 key: `bulletClosedColor`,
-                title: `choice closed-bullet color *`,
+                title: `choice closed-bullet color`,
                 type: "string",
                 default: "f8b400",
-                description: "",
+                description: "Accentuate with color",
                 inputAs: "color",
             },
         );
 
-        [1, 2, 3, 4, 5, 6].forEach((idx) => {
+
+        //page
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach((idx) => {
             settingArray.push(
                 {
-                    key: `heading00${idx}`,
-                    title: `Custom #tag (${idx})`,
+                    key: `heading10${idx}`,
+                    title: `page [ ${idx} ]`,
                     type: "heading",
                     default: "",
+                    description: "Accentuate the specified page like a panel.",
+                },
+                {
+                    key: `pn${idx}`,
+                    title: `set [ page title ] word`,
+                    type: "string",
+                    default: ``,
                     description: "",
                 },
                 {
-                    key: `tn${idx}`,
-                    title: `set #tag name *`,
+                    key: `pc${idx}`,
+                    title: `choice background color`,
                     type: "string",
-                    default: `tag${idx}`,
-                    description: "without #",
+                    default: rainbowColor[idx - 1],
+                    description: "color fades",
+                    inputAs: "color",
+                },
+            );
+        });
+
+
+        //tag
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach((idx) => {
+            settingArray.push(
+                {
+                    key: `heading00${idx}`,
+                    title: `#tag [ ${idx} ]`,
+                    type: "heading",
+                    default: "",
+                    description: "Accentuate tagged blocks like a panel.",
+                },
+                {
+                    key: `tn${idx}`,
+                    title: `set [ tag ] word`,
+                    type: "string",
+                    default: ``,
+                    description: "without [ # ]",
                 },
                 {
                     key: `tc${idx}`,
                     title: `choice background color`,
                     type: "string",
                     default: rainbowColor[idx - 1],
-                    description: "",
+                    description: "color fades",
                     inputAs: "color",
                 },
             );
         });
-
-        settingArray.push(
-            {
-                key: "heading03",
-                title: "created stylesheet",
-                type: "heading",
-                default: "",
-                description: "",
-            },
-            {
-                key: "stylesheet",
-                title: "custom tags",
-                inputAs: "textarea",
-                type: "string",
-                default: "",
-                description: "",
-            },
-        );
 
         return settingArray;
     };

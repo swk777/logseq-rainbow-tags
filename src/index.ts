@@ -2,20 +2,9 @@ import "@logseq/libs";
 import { settingUI } from './setting';
 import { logseq as PL } from "../package.json";
 const pluginId = PL.id;
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';//https://sweetalert2.github.io/
 
-interface ITag {
-  name: string;
-  color: string;
-}
-
-const generateTagStyle = (tag: ITag) => `
-div#app-container a.tag[data-ref="${tag.name}"]{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color,0.3)}
-div#app-container div[data-refs-self*="${tag.name}"]{padding:.8em;border-radius:20px;background:${hex2rgba(tag.color,0.15)}
-div#app-container a.tag[data-ref="${tag.name}"]{background:${hex2rgba(tag.color,0.3)}
-div#app-container div[data-refs-self*="${tag.name}"]{background:${hex2rgba(tag.color,0.15)}
-`;
-
+//hex -> rgba
 //Credit: https://www.yoheim.net/blog.php?q=20171007
 function hex2rgba(hex, alpha = 1) {
   //long #FF0000
@@ -40,9 +29,29 @@ function hex2rgba(hex, alpha = 1) {
   return `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${alpha})`;
 }
 
+
+//for tag
+interface ITag {
+  name: string;
+  color: string;
+}
+const generateTagStyle = (tag: ITag) => `div#app-container a.tag[data-ref="${CSS.escape(tag.name)}"]{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color, 0.3)}}
+div#app-container div[data-refs-self*="${CSS.escape(tag.name)}"]{padding:1.4em;border-radius:16px;background:${hex2rgba(tag.color, 0.15)}}`;
+
+//for page
+interface IPage {
+  name: string;
+  color: string;
+}
+const generatePageStyle = (page: IPage) => `body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)}{border-radius:0.4em;background:${hex2rgba(page.color, 0.2)};outline:2px double ${hex2rgba(page.color, 0.2)};outline-offset:3px}
+body[data-page="page"] div#main-content-container h1.page-title span[data-ref="${CSS.escape(page.name)}"]{color:${hex2rgba(page.color, 0.8)}}
+body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)} div.page-properties{background:${hex2rgba(page.color, 0.2)}}`;
+
+//for tag and page
 const refreshSettings = (e) => {
   const settings = e || {};
   const settingKeys = Object.keys(settings || {});
+  //tag
   const tcArray = settingKeys
     .filter((key) => key.includes("tc"))
     .sort()
@@ -59,14 +68,53 @@ const refreshSettings = (e) => {
   });
   const thisStyle = settingArray.map(generateTagStyle).join("\n");
   logseq.provideStyle(thisStyle);
-  logseq.updateSettings({ stylesheet: thisStyle });
+  //tag end
 
+  //page
+  const pcArray = settingKeys
+    .filter((key) => key.includes("pc"))
+    .sort()
+    .map((key) => settings[key]);
+  const pnArray = settingKeys
+    .filter((key) => key.includes("pn"))
+    .sort()
+    .map((key) => settings[key]);
+  const settingArrayPage: IPage[] = [];
+  pcArray.forEach((pc, idx) => {
+    if (pc && pnArray[idx]) {
+      settingArrayPage.push({ name: pnArray[idx].toLowerCase(), color: pc });
+    }
+  });
+  const thisStylePage = settingArrayPage.map(generatePageStyle).join("\n");
+  logseq.provideStyle(thisStylePage);
+  //page end
+
+  //set BulletClosed
+  const SettingBulletClosedColor: string = settings.bulletClosedColor;
+  const bulletClosedStyle: string = `div#app-container span.bullet{height:9px;width:9px;border-radius:40%;opacity:.6;transition:unset!important}
+  div#app-container span.bullet-container.bullet-closed{height:11px;width:11px;outline:5px solid ${hex2rgba(SettingBulletClosedColor, 0.6)}
+  `;
+  logseq.provideStyle(bulletClosedStyle);
+};
+
+
+//CSS
+async function ProvideStyle(e) {
+  const settings = e || {};
   //Logseq bugs fix
   /* Fix "Extra space when journal queries are not active #6773" */
   /* background conflict journal queries */
   /* journal queries No shadow */
   logseq.provideStyle(String.raw`
   body[data-page="home"] div#today-queries>div.lazy-visibility{min-height:unset!important}body[data-page="home"] div#today-queries>div.lazy-visibility>div.shadow{display:none}body[data-page="home"] div#today-queries div.color-level div.blocks-container,body[data-page="home"] div#today-queries div.color-level{background-color:unset}
+  `);
+  //set today journal coloring
+  const SettingTodayJournal: string = settings.todayJournal;
+  if (SettingTodayJournal === "enable") {
+    parent.document.body.classList.add('pc-todayJournal');
+  }
+  logseq.provideStyle(`body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:first-child{border-radius:0.4em;background:rgba(251,255,177,0.2);outline:3px double rgba(251,255,177,0.6);outline-offset:3px}
+  body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:nth-of-type(2){border-radius:0.4em;background:rgba(144,238,144,0.16);outline:3px double rgba(144,238,144,0.6);outline-offset:3px}
   `);
 
   //set rainbow-journal
@@ -75,32 +123,17 @@ const refreshSettings = (e) => {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
 
-
-  //set BulletClosed
-  const SettingBulletClosedColor: string = settings.bulletClosedColor;
-  const bulletClosedStyle: string = `
-  div#app-container span.bullet{height:9px;width:9px;border-radius:40%;opacity:.6;transition:unset!important}
-  div#app-container span.bullet-container.bullet-closed{height:11px;width:11px;outline:5px solid ${hex2rgba(SettingBulletClosedColor,0.6)}
-  `;
-  logseq.provideStyle(bulletClosedStyle);
-
   //set admonitions
   const SwitchAdmonitions: string = settings.admonitions;
   if (SwitchAdmonitions === "enable") {
     parent.document.body.classList.add('pc-admonitions');
   }
-
-  /*
-  🔴FAILED / REMEDY
-  🟠WARNING / LEARNED
-  🟡CAUTION / DECLARATION
-  🟢SUCCESS / FACTS
-  🔵NOTICE / INFO / REVIEW
-  🟣QUESTION / DISCOVERY
-  🟤REPORT / NOTE
-  add DECLARATION FACTS DISCOVERY LEARNED BAD
-  */
   logseq.provideStyle(String.raw`
+  article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading001"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading002"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading003"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading004"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading005"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading006"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading007"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading008"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading009"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading0010"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading0011"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading0012"]{color:green}
+  article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading101"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading102"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading103"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading104"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading105"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading106"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading107"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading108"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading109"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading1010"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading1011"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="heading1012"]{color:orange}
+  article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn1"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn2"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn3"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn4"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn5"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn6"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn7"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn8"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn9"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn10"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn11"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pn12"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn1"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn2"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn3"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn4"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn5"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn6"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn7"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn8"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn9"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn10"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn11"],article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tn12"]{width: 48%}
+  body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc1"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc2"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc3"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc4"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc5"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc6"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc7"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc8"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc9"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc10"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc11"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc12"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc1"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc2"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc3"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc4"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc5"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc6"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc7"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc8"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc9"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc10"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc11"],body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc12"]{left: 48%;margin-top:-4.4em}
+  body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc1"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc2"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc3"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc4"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc5"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc6"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc7"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc8"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc9"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc10"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc11"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="pc12"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc1"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc2"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc3"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc4"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc5"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc6"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc7"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc8"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc9"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc10"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc11"],body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap div[data-key="tc12"]{left: 48%;position:absolute;margin-top:-5.4em}
   body.pc-rainbowJournal div#app-container div.block-children [level="3"]{border-right:4px solid #ff00005c}
   body.pc-rainbowJournal div#app-container div.block-children [level="4"]{border-right:6px solid #ec87225e}
   body.pc-rainbowJournal div#app-container div.block-children [level="5"]{border-right:8px solid #ffff0052}
@@ -109,31 +142,32 @@ const refreshSettings = (e) => {
   body.pc-rainbowJournal div#app-container div.block-children [level="8"]{border-right:14px solid #9f8af061}
   body.pc-rainbowJournal div#app-container div.block-children [level="9"]{border-right:16px solid #f15bf74f}
   body.pc-admonitions main div#app-container a.tag[data-ref="caution"],body.pc-admonitions main div#app-container a.tag[data-ref="declaration"]{color:inherit;padding:2px;border-radius:3px;background:rgba(248,180,0,0.7)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions main div#app-container div[data-refs-self='["declaration"]']{padding:.8em;border-radius:20px;background:rgba(248,180,0,0.1);outline:3px solid rgba(248,180,0,0.8);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions main div#app-container div[data-refs-self='["declaration"]']{padding:1.4em;border-radius:16px;background:rgba(248,180,0,0.1);outline:3px double rgba(248,180,0,0.8);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["caution"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["declaration"]']::before{content:"🟡";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref="caution"],body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref="declaration"]{background:rgba(255,248,220,0.3)}
-  body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["declaration"]']{background:rgba(255,248,220,0.1);outline:3px solid rgba(255,248,220,0.7)}
+  body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["declaration"]']{background:rgba(255,248,220,0.1);outline:3px double rgba(255,248,220,0.7)}
   body.pc-admonitions main div#app-container a.tag[data-ref="success"],body.pc-admonitions main div#app-container a.tag[data-ref="facts"]{color:inherit;padding:2px;border-radius:3px;background:rgba(42,178,123,0.6)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["success"]'],body.pc-admonitions main div#app-container div[data-refs-self='["facts"]']{padding:.8em;border-radius:20px;background:rgba(42,178,123,0.1);outline:3px solid rgba(42,178,123,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["success"]'],body.pc-admonitions main div#app-container div[data-refs-self='["facts"]']{padding:1.4em;border-radius:16px;background:rgba(42,178,123,0.1);outline:3px double rgba(42,178,123,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["success"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["facts"]']::before{content:"🟢";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions main div#app-container a.tag[data-ref="warning"],body.pc-admonitions main div#app-container a.tag[data-ref="learned"]{color:inherit;padding:2px;border-radius:3px;background:rgba(255,127,80,0.7)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["warning"]'],body.pc-admonitions main div#app-container div[data-refs-self='["learned"]']{padding:.8em;border-radius:20px;background:rgba(255,127,80,0.1);outline:3px solid rgba(255,127,80,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["warning"]'],body.pc-admonitions main div#app-container div[data-refs-self='["learned"]']{padding:1.4em;border-radius:16px;background:rgba(255,127,80,0.1);outline:3px double rgba(255,127,80,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["warning"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["learned"]']::before{content:"🟠";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions main div#app-container a.tag[data-ref="failed"],body.pc-admonitions main div#app-container a.tag[data-ref="remedy"]{color:inherit;padding:2px;border-radius:3px;background:rgba(220,20,60,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["failed"]'],body.pc-admonitions main div#app-container div[data-refs-self='["remedy"]']{padding:.8em;border-radius:20px;background:rgba(220,20,60,0.1);outline:3px solid rgba(220,20,60,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["failed"]'],body.pc-admonitions main div#app-container div[data-refs-self='["remedy"]']{padding:1.4em;border-radius:16px;background:rgba(220,20,60,0.1);outline:3px double rgba(220,20,60,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["failed"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["remedy"]']::before{content:"🔴";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions main div#app-container a.tag[data-ref="question"],body.pc-admonitions main div#app-container a.tag[data-ref="discovery"]{color:inherit;padding:2px;border-radius:3px;background:rgba(147,112,219,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["question"]'],body.pc-admonitions main div#app-container div[data-refs-self='["discovery"]']{padding:.8em;border-radius:20px;background:rgba(147,112,219,0.1);outline:3px solid rgba(147,112,219,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["question"]'],body.pc-admonitions main div#app-container div[data-refs-self='["discovery"]']{padding:1.4em;border-radius:16px;background:rgba(147,112,219,0.1);outline:3px double rgba(147,112,219,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["question"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["discovery"]']::before{content:"🟣";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions main div#app-container a.tag[data-ref="report"],body.pc-admonitions main div#app-container a.tag[data-ref="note"],body.pc-admonitions main div#app-container a.tag[data-ref="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(160,82,45,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["report"]'],body.pc-admonitions main div#app-container div[data-refs-self='["note"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:.8em;border-radius:20px;background:rgba(160,82,45,0.1);outline:3px solid rgba(160,82,45,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["report"]'],body.pc-admonitions main div#app-container div[data-refs-self='["note"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:1.4em;border-radius:16px;background:rgba(160,82,45,0.1);outline:3px double rgba(160,82,45,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["report"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["note"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["review"]']::before{content:"🟤";font-size:20px;position:absolute;right:10px;top:10px}
   body.pc-admonitions main div#app-container a.tag[data-ref="notice"],body.pc-admonitions main div#app-container a.tag[data-ref="info"],body.pc-admonitions main div#app-container a.tag[data-ref="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(30,144,255,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["notice"]'],body.pc-admonitions main div#app-container div[data-refs-self='["info"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:.8em;border-radius:20px;background:rgba(30,144,255,0.1);outline:3px solid rgba(30,144,255,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self='["notice"]'],body.pc-admonitions main div#app-container div[data-refs-self='["info"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:1.4em;border-radius:16px;background:rgba(30,144,255,0.1);outline:3px double rgba(30,144,255,0.7);outline-offset:3px}
   body.pc-admonitions main div#app-container div[data-refs-self='["notice"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["info"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["review"]']::before{content:"🔵";font-size:20px;position:absolute;right:10px;top:10px}
   `);
+
   console.info(`#${pluginId}: provide style`); /* -plugin-id */
-};
+}
 
 
 //admonition selector
@@ -170,7 +204,9 @@ function selectAdmonition(uuid) {
         logseq.Editor.getBlock(uuid).then((e) => {
           if (e) {
             const content = "#" + tag + " " + e.content;
-            logseq.Editor.updateBlock(uuid, content);
+            logseq.Editor.updateBlock(uuid, content).then(() => {
+              logseq.Editor.insertBlock(uuid, "");
+            });
           }
         });
       }
@@ -183,9 +219,8 @@ function selectAdmonition(uuid) {
 //main
 const main = async () => {
   console.info(`#${pluginId}: MAIN`); /* -plugin-id */
-
+  ProvideStyle(logseq.settings);
   refreshSettings(logseq.settings);
-
 };
 //main end
 
@@ -215,14 +250,12 @@ const after = async () => {
   });
 
   /* Block slash command */
-  logseq.Editor.registerSlashCommand('🔴🟠🟡🟢🔵🟣🟤 Select Admonition panel', async (e) => {
-    const uuid = e.uuid;
+  logseq.Editor.registerSlashCommand('🌈Select Admonition panel', async ({ uuid }) => {
     selectAdmonition(uuid);
   });
 
   /* Block ContextMenuItem  */
-  logseq.Editor.registerBlockContextMenuItem('🔴🟠🟡🟢🔵Select Admonition', async (e) => {
-    const uuid = e.uuid;
+  logseq.Editor.registerBlockContextMenuItem('🌈Select Admonition', async ({ uuid }) => {
     selectAdmonition(uuid);
   });
 
@@ -231,7 +264,11 @@ const after = async () => {
     parent.document.body.classList.remove('is-plugin-panel-coloring-enabled');
   });
   logseq.onSettingsChanged((settings, oldSettings) => {
-    onSettingsChangedCallback(settings, oldSettings);
+    if (settings !== oldSettings) {
+      console.log(`#${pluginId}: onSettingsChanged`);
+      refreshSettings(settings);
+      onSettingsChangedCallback(settings, oldSettings);
+    }
   });
 
   console.info(`#${pluginId}: loaded`);
@@ -250,6 +287,11 @@ const onSettingsChangedCallback = (newSettings: any, oldSettings: any) => {
   } else if (oldSettings.rainbowJournal !== "enable" && newSettings.rainbowJournal === "enable") {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
+  if (oldSettings.todayJournal !== "disable" && newSettings.todayJournal === "disable") {
+    parent.document.body.classList.remove('pc-todayJournal');
+  } else if (oldSettings.todayJournal !== "enable" && newSettings.todayJournal === "enable") {
+    parent.document.body.classList.add('pc-todayJournal');
+  }
 }
 
 
@@ -259,7 +301,6 @@ const model = {
     logseq.showSettingsUI();
   }
 };
-
 
 // bootstrap
 logseq.ready(model, main).then(after).catch(console.error);
