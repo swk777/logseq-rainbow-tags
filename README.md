@@ -77,6 +77,8 @@
 
 [nmartin84/admonition-panels](https://github.com/nmartin84/admonition-panels)
 
+[benjaffe/logseq-reference-styles](https://github.com/benjaffe/logseq-reference-styles)
+
 [icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
 
 ---
