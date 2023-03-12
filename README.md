@@ -79,13 +79,13 @@
 
 ## Prior art & Credit
 
-[swk777/logseq-rainbow-tags](https://github.com/swk777/logseq-rainbow-tags)
+- [swk777/logseq-rainbow-tags](https://github.com/swk777/logseq-rainbow-tags)
 
-[nmartin84/admonition-panels](https://github.com/nmartin84/admonition-panels)
+- nmartin84/admonition-panels
 
-[benjaffe/logseq-reference-styles](https://github.com/benjaffe/logseq-reference-styles)
+- [benjaffe/logseq-reference-styles](https://github.com/benjaffe/logseq-reference-styles)
 
-[icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
+- [icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
 
 ---
 
