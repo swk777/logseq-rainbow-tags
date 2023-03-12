@@ -71,6 +71,12 @@
 ![image](https://user-images.githubusercontent.com/111847207/224518718-de37c55f-33d7-48cd-987a-78721367a8c6.png)
 
 
+## Other my plugins
+
+- [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
+
+- [page-tags and hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
+
 ## Prior art & Credit
 
 [swk777/logseq-rainbow-tags](https://github.com/swk777/logseq-rainbow-tags)
