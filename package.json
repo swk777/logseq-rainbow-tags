@@ -21,6 +21,5 @@
   },
   "devDependencies": {
     "parcel": "latest"
-  },
-  "effect": true
+  }
 }
