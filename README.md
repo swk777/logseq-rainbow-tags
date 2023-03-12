@@ -38,9 +38,9 @@
 
 #### Admonition panel Selector
 
-- slash command => `/select admonition panel`
+- slash command => `/🌈select admonition panel`
 
-- bullet contextmenu => `select admonition`
+- bullet contextmenu => `🌈select admonition`
 
 #### Demo (light theme)
 
