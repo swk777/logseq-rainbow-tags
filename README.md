@@ -20,6 +20,8 @@
 
  ![Animation6w21](https://user-images.githubusercontent.com/111847207/224569763-9bcd8089-dce9-4681-ab9c-cc0cd063664b.gif)
 
+![image](https://user-images.githubusercontent.com/111847207/224722704-45ab6b09-3906-4404-949a-b6ace2745860.png)
+
 ### Tag coloring
 
 > possible to set up to 12 tags.
