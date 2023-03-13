@@ -7,6 +7,7 @@
 
 ## New Function & Update
 
+1. [left sidebar] favorite color underline (Page coloring) #2023/03/13
 1. Page coloring #2023/03/12
 1. today & yesterday journal coloring #2023/03/12
 
