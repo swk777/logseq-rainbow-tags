@@ -17,7 +17,7 @@
 
 ### Demo (light theme)
 
- ![image](https://user-images.githubusercontent.com/111847207/224491982-9f85909c-f016-45dc-8d22-c4e6fd17057c.png)
+ ![Animation6w21](https://user-images.githubusercontent.com/111847207/224569763-9bcd8089-dce9-4681-ab9c-cc0cd063664b.gif)
 
 ### Tag coloring
 
