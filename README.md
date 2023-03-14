@@ -66,6 +66,10 @@
 
 > background-color: yellow & green (**light theme only)
 
+### today & yesterday journal Day of week
+
+> Add the day of the week after title.
+
 ### choice closed-bullet color
 
 > Accentuate with color
