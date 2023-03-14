@@ -21,7 +21,7 @@
 
 ![Animation6w21](https://user-images.githubusercontent.com/111847207/224817899-44220e25-3c28-4ea6-9f9a-5892241df95a.gif)
 
-### today & yesterday journal Day of week
+### [left sidebar] color underline on favorite list
 
 ![image](https://user-images.githubusercontent.com/111847207/224722704-45ab6b09-3906-4404-949a-b6ace2745860.png)
 
