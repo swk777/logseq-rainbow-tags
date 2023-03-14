@@ -118,6 +118,20 @@ async function ProvideStyle(e) {
   body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:nth-of-type(2){border-radius:0.4em;background:rgba(144,238,144,0.16);outline:3px double rgba(144,238,144,0.6);outline-offset:3px}
   `);
 
+  //set today journal day of week 
+  const SettingTodayDayOfWeek: string = settings.todayDayOfWeek;
+  if (SettingTodayDayOfWeek === "English") {
+    parent.document.body.classList.add('pc-todayDayOfWeek-en');
+  }
+  const date = new Date();
+  const todayDayOfWeekStr = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."][date.getDay()];
+  date.setDate(date.getDate() - 1);
+  const yesterdayDayOfWeekStr = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."][date.getDay()];
+  logseq.provideStyle(`
+  body[data-page="home"].pc-todayDayOfWeek-en div#journals div.journal-item.content:first-child a.journal-title h1.title:after{margin-left:0.8em;content:"${todayDayOfWeekStr}"}
+  body[data-page="home"].pc-todayDayOfWeek-en div#journals div.journal-item.content:nth-of-type(2) a.journal-title h1.title:after{margin-left:0.8em;content:"${yesterdayDayOfWeekStr}"}
+  `);
+
   //set rainbow-journal
   const SettingRainbowJournal: string = settings.rainbowJournal;
   if (SettingRainbowJournal === "enable") {
@@ -292,6 +306,11 @@ const onSettingsChangedCallback = (newSettings: any, oldSettings: any) => {
     parent.document.body.classList.remove('pc-todayJournal');
   } else if (oldSettings.todayJournal !== "enable" && newSettings.todayJournal === "enable") {
     parent.document.body.classList.add('pc-todayJournal');
+  }
+  if (oldSettings.todayDayOfWeek === "English" && newSettings.todayDayOfWeek === "disable") {
+    parent.document.body.classList.remove('pc-todayDayOfWeek-en');
+  } else if (oldSettings.todayDayOfWeek !== "enable" && newSettings.todayDayOfWeek === "English") {
+    parent.document.body.classList.add('pc-todayDayOfWeek-en');
   }
 }
 

@@ -1,26 +1,28 @@
 # logseq-plugin-panel-coloring
 
-> Accentuate the specified pages or tagged blocks like a panel. 
+> Accentuate the specified pages or tagged blocks like a panel.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-panel-coloring)](https://github.com/YU000jp/logseq-plugin-panel-coloring/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-panel-coloring?color=blue)](https://github.com/YU000jp/logseq-plugin-panel-coloring/blob/main/LICENSE)
 
 ## New Function & Update
 
-1. [left sidebar] favorite color underline (Page coloring) #2023/03/13
-1. Page coloring #2023/03/12
-1. today & yesterday journal coloring #2023/03/12
+1. add today & yesterday journal Day of week #2023/03/15
+1. update Page coloring < [left sidebar] color underline on favorite list > #2023/03/13
+1. add Page coloring #2023/03/12
+1. add today & yesterday journal coloring #2023/03/12
 
 ### Page coloring (title and contents)
 
 > possible to set up to 12 pages.
 > Set the background color and options in the page titles on settings.
 
-### Demo (light theme)
+### Demo [light theme]
 
 ![Animation6w21](https://user-images.githubusercontent.com/111847207/224817899-44220e25-3c28-4ea6-9f9a-5892241df95a.gif)
 
-### improvement
+### today & yesterday journal Day of week
+
 ![image](https://user-images.githubusercontent.com/111847207/224722704-45ab6b09-3906-4404-949a-b6ace2745860.png)
 
 ### Tag coloring
@@ -46,11 +48,11 @@
 
 - bullet contextmenu => `🌈select admonition`
 
-#### Demo (light theme)
+#### demo [light theme]
 
 ![image](https://user-images.githubusercontent.com/111847207/207467377-e307a412-b9c1-4889-b110-3f69e3f00007.png)
 
-#### Demo (dark theme)
+#### demo [dark theme]
 
 ![image](https://user-images.githubusercontent.com/111847207/207467439-26c7a35a-4cb7-4f60-8807-68d1832d4656.png)
 
@@ -73,7 +75,6 @@
 > possible to open settings from button for this plugin on upper right toolbar
 
 ![image](https://user-images.githubusercontent.com/111847207/224518718-de37c55f-33d7-48cd-987a-78721367a8c6.png)
-
 
 ## Other my plugins
 

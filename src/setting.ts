@@ -48,6 +48,15 @@ export const settingUI = () => {
                 description: "background-color: yellow & green (**light theme only)",
             },
             {
+                key: "todayDayOfWeek",
+                title: "today & yesterday journal Day of week",
+                type: "enum",
+                enumChoices: ["English", "disable"],
+                enumPicker: "radio",
+                default: "disable",
+                description: "title after",
+            },
+            {
                 key: `bulletClosedColor`,
                 title: `choice closed-bullet color`,
                 type: "string",
