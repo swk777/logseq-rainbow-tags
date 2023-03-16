@@ -43,7 +43,9 @@ interface IPage {
   name: string;
   color: string;
 }
-const generatePageStyle = (page: IPage) => `body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)}{border-radius:0.4em;background:${hex2rgba(page.color, 0.2)};outline:2px double ${hex2rgba(page.color, 0.2)};outline-offset:3px}
+const generatePageStyle = (page: IPage) => `
+body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)}{border-radius:0.4em;background-color:${hex2rgba(page.color, 0.2)};outline:2px double ${hex2rgba(page.color, 0.2)};outline-offset:3px}
+body[data-page="page"] div.dark-theme div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)}{background-color:${hex2rgba(page.color, 0.3)};outline-color:${hex2rgba(page.color, 0.3)}}
 body[data-page="page"] div#main-content-container h1.page-title span[data-ref="${CSS.escape(page.name)}"]{color:${hex2rgba(page.color, 0.8)}}
 body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)} div.page-properties{background:${hex2rgba(page.color, 0.2)}}
 div#left-sidebar li.favorite-item[data-ref*="${CSS.escape(page.name)}" i] span.page-title{border-bottom:2px solid ${hex2rgba(page.color, 1)}}`;
