@@ -48,7 +48,7 @@ body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CS
 body[data-page="page"] div.dark-theme div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)}{background-color:${hex2rgba(page.color, 0.3)};outline-color:${hex2rgba(page.color, 0.3)}}
 body[data-page="page"] div#main-content-container h1.page-title span[data-ref="${CSS.escape(page.name)}"]{color:${hex2rgba(page.color, 0.8)}}
 body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)} div.page-properties{background:${hex2rgba(page.color, 0.2)}}
-div#left-sidebar li.favorite-item[data-ref*="${CSS.escape(page.name)}" i] span.page-title{border-bottom:2px solid ${hex2rgba(page.color, 1)}}`;
+div#left-sidebar div.favorites li.favorite-item[data-ref*="${CSS.escape(page.name)}"i] span.page-title{border-bottom:2px solid ${hex2rgba(page.color, 1)}}`;
 
 //for tag and page
 const refreshSettings = (e) => {
@@ -88,9 +88,28 @@ const refreshSettings = (e) => {
       settingArrayPage.push({ name: pnArray[idx].toLowerCase(), color: pc });
     }
   });
-  const thisStylePage = settingArrayPage.map(generatePageStyle).join("\n");
+  const thisStylePage = settingArrayPage.map(generatePageStyle).join("\n");//Page Coloring && favorites coloring
+  settingArrayPage.map(FavoriteOverflowCSS);//favorite recent remove
   logseq.provideStyle(thisStylePage);
   //page end
+
+  //favorites:has(title) + recent display none (overflow CSS)
+  function FavoriteOverflowCSS(page: IPage) {
+    const favorites = parent.document.querySelector('div.favorites');
+    if (favorites) {
+      const favoriteItems = favorites.querySelectorAll(`li.favorite-item[data-ref*="${CSS.escape(page.name)}"i]`);
+      if (favoriteItems.length > 0) {
+        const nextSibling = favorites.nextElementSibling;
+        if (nextSibling && nextSibling.classList.contains('recent')) {
+          const recentItems = nextSibling.querySelectorAll(`li[data-ref*="${CSS.escape(page.name)}" i].recent-item.select-none`);
+          recentItems.forEach(item => item.classList.add('hidden'));
+        }
+      }
+    }
+  }
+
+
+
 
   //set BulletClosed
   const SettingBulletClosedColor: string = settings.bulletClosedColor;
