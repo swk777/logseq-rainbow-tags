@@ -1,4 +1,4 @@
-# logseq-plugin-panel-coloring
+# Logseq Plugin: Panel Coloring
 
 > Accentuate the specified pages or tagged blocks like a panel.
 
