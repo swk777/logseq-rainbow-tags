@@ -80,6 +80,16 @@
 
 ![image](https://user-images.githubusercontent.com/111847207/224518718-de37c55f-33d7-48cd-987a-78721367a8c6.png)
 
+## Install from Marketplace
+
+- Press [---] on the top right toolbar to open [Plugins]
+
+- Select marketplace
+
+- Type 'some' in the search field, select it from the search results and install
+
+![image](https://user-images.githubusercontent.com/111847207/229359195-84732952-d385-4689-af1e-2cc7cc9d491f.png)
+
 ## Other my plugins
 
 - [SomeMenuExtemder](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
