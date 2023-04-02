@@ -86,7 +86,7 @@
 
 - Select marketplace
 
-- Type 'some' in the search field, select it from the search results and install
+- Type 'panel' in the search field, select it from the search results and install
 
 ![image](https://user-images.githubusercontent.com/111847207/229359195-84732952-d385-4689-af1e-2cc7cc9d491f.png)
 
