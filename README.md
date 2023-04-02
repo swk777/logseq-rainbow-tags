@@ -82,18 +82,17 @@
 
 ## Other my plugins
 
+- [SomeMenuExtemder](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
 - [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
-
-- [page-tags and hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
+- [Page-tags and Hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
+- [Rakuten-books](https://github.com/YU000jp/logseq-plugin-rakuten-books) (Only for Japanese site)
+- [booklog-jp-import](https://github.com/YU000jp/logseq-plugin-booklog-jp-import) (Only for Japanese site)
 
 ## Prior art & Credit
 
 - [swk777/logseq-rainbow-tags](https://github.com/swk777/logseq-rainbow-tags)
-
 - nmartin84/admonition-panels
-
 - [benjaffe/logseq-reference-styles](https://github.com/benjaffe/logseq-reference-styles)
-
 - [icon: Glyphs](https://glyphs.fyi/dir?i=venn&v=poly&w)
 
 ---
