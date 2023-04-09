@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@logseq/libs": "latest",
-    "sweetalert2": "^11.6.16"
+    "sweetalert2": "^11.7.3"
   },
   "logseq": {
     "id": "logseq-plugin-panel-coloring",
