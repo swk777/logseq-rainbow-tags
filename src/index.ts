@@ -35,7 +35,7 @@ interface ITag {
   name: string;
   color: string;
 }
-const generateTagStyle = (tag: ITag) => `div#app-container a.tag[data-ref="${CSS.escape(tag.name)}"]{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color, 0.3)}}
+const generateTagStyle = (tag: ITag) => `div#app-container a.tag[data-ref*="${CSS.escape(tag.name)}"]{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color, 0.3)}}
 div#app-container div[data-refs-self*="${CSS.escape(tag.name)}"]{padding:1.4em;border-radius:16px;background:${hex2rgba(tag.color, 0.15)}}`;
 
 //for page
@@ -49,6 +49,21 @@ body[data-page="page"] div.dark-theme div#main-content-container div.page-blocks
 body[data-page="page"] div#main-content-container h1.page-title span[data-ref="${CSS.escape(page.name)}"]{color:${hex2rgba(page.color, 0.8)}}
 body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)} div.page-properties{background:${hex2rgba(page.color, 0.2)}}
 div#left-sidebar div.favorites li.favorite-item[data-ref*="${CSS.escape(page.name)}"i] span.page-title{border-bottom:2px solid ${hex2rgba(page.color, 1)}}`;
+
+  //favorites:has(title) + recent display none (overflow CSS)
+  const FavoriteOverflowCSS = (page: IPage) => {
+    const favorites = parent.document.querySelector('div.favorites');
+    if (favorites) {
+      const favoriteItems = favorites.querySelectorAll(`li.favorite-item[data-ref*="${CSS.escape(page.name)}"i]`);
+      if (favoriteItems.length > 0) {
+        const nextSibling = favorites.nextElementSibling;
+        if (nextSibling && nextSibling.classList.contains('recent')) {
+          const recentItems = nextSibling.querySelectorAll(`li[data-ref*="${CSS.escape(page.name)}" i].recent-item.select-none`);
+          recentItems.forEach(item => item.classList.add('hidden'));
+        }
+      }
+    }
+  };
 
 //for tag and page
 const refreshSettings = (e) => {
@@ -93,21 +108,6 @@ const refreshSettings = (e) => {
   logseq.provideStyle(thisStylePage);
   //page end
 
-  //favorites:has(title) + recent display none (overflow CSS)
-  function FavoriteOverflowCSS(page: IPage) {
-    const favorites = parent.document.querySelector('div.favorites');
-    if (favorites) {
-      const favoriteItems = favorites.querySelectorAll(`li.favorite-item[data-ref*="${CSS.escape(page.name)}"i]`);
-      if (favoriteItems.length > 0) {
-        const nextSibling = favorites.nextElementSibling;
-        if (nextSibling && nextSibling.classList.contains('recent')) {
-          const recentItems = nextSibling.querySelectorAll(`li[data-ref*="${CSS.escape(page.name)}" i].recent-item.select-none`);
-          recentItems.forEach(item => item.classList.add('hidden'));
-        }
-      }
-    }
-  }
-
 
   //set BulletClosed
   const SettingBulletClosedColor: string = settings.bulletClosedColor;
@@ -119,8 +119,7 @@ const refreshSettings = (e) => {
 
 
 //CSS
-async function ProvideStyle(e) {
-  const settings = e || {};
+async function ProvideStyle() {
   //Logseq bugs fix
   /* Fix "Extra space when journal queries are not active #6773" */
   /* background conflict journal queries */
@@ -129,8 +128,7 @@ async function ProvideStyle(e) {
   body[data-page="home"] div#today-queries>div.lazy-visibility{min-height:unset!important}body[data-page="home"] div#today-queries>div.lazy-visibility>div.shadow{display:none}body[data-page="home"] div#today-queries div.color-level div.blocks-container,body[data-page="home"] div#today-queries div.color-level{background-color:unset}
   `);
   //set today journal coloring
-  const SettingTodayJournal: string = settings.todayJournal;
-  if (SettingTodayJournal === "enable") {
+  if (logseq.settings?.todayJournal === "enable") {
     parent.document.body.classList.add('pc-todayJournal');
   }
   logseq.provideStyle(`body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:first-child{border-radius:0.4em;background:rgba(251,255,177,0.2);outline:3px double rgba(251,255,177,0.6);outline-offset:3px}
@@ -138,8 +136,7 @@ async function ProvideStyle(e) {
   `);
 
   //set today journal day of week 
-  const SettingTodayDayOfWeek: string = settings.todayDayOfWeek;
-  if (SettingTodayDayOfWeek === "English") {
+  if (logseq.settings?.todayDayOfWeek === "English") {
     parent.document.body.classList.add('pc-todayDayOfWeek-en');
   }
   const date = new Date();
@@ -152,14 +149,12 @@ async function ProvideStyle(e) {
   `);
 
   //set rainbow-journal
-  const SettingRainbowJournal: string = settings.rainbowJournal;
-  if (SettingRainbowJournal === "enable") {
+  if (logseq.settings?.rainbowJournal === "enable") {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
 
   //set admonitions
-  const SwitchAdmonitions: string = settings.admonitions;
-  if (SwitchAdmonitions === "enable") {
+  if (logseq.settings?.admonitions === "enable") {
     parent.document.body.classList.add('pc-admonitions');
   }
   logseq.provideStyle(String.raw`
@@ -176,29 +171,29 @@ async function ProvideStyle(e) {
   body.pc-rainbowJournal div#app-container div.block-children [level="7"]{border-right:12px solid #2ca0df5e}
   body.pc-rainbowJournal div#app-container div.block-children [level="8"]{border-right:14px solid #9f8af061}
   body.pc-rainbowJournal div#app-container div.block-children [level="9"]{border-right:16px solid #f15bf74f}
-  body.pc-admonitions main div#app-container a.tag[data-ref="caution"],body.pc-admonitions main div#app-container a.tag[data-ref="declaration"]{color:inherit;padding:2px;border-radius:3px;background:rgba(248,180,0,0.7)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions main div#app-container div[data-refs-self='["declaration"]']{padding:1.4em;border-radius:16px;background:rgba(248,180,0,0.1);outline:3px double rgba(248,180,0,0.8);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["caution"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["declaration"]']::before{content:"🟡";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref="caution"],body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref="declaration"]{background:rgba(255,248,220,0.3)}
-  body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["caution"]'],body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self='["declaration"]']{background:rgba(255,248,220,0.1);outline:3px double rgba(255,248,220,0.7)}
-  body.pc-admonitions main div#app-container a.tag[data-ref="success"],body.pc-admonitions main div#app-container a.tag[data-ref="facts"]{color:inherit;padding:2px;border-radius:3px;background:rgba(42,178,123,0.6)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["success"]'],body.pc-admonitions main div#app-container div[data-refs-self='["facts"]']{padding:1.4em;border-radius:16px;background:rgba(42,178,123,0.1);outline:3px double rgba(42,178,123,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["success"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["facts"]']::before{content:"🟢";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions main div#app-container a.tag[data-ref="warning"],body.pc-admonitions main div#app-container a.tag[data-ref="learned"]{color:inherit;padding:2px;border-radius:3px;background:rgba(255,127,80,0.7)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["warning"]'],body.pc-admonitions main div#app-container div[data-refs-self='["learned"]']{padding:1.4em;border-radius:16px;background:rgba(255,127,80,0.1);outline:3px double rgba(255,127,80,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["warning"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["learned"]']::before{content:"🟠";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions main div#app-container a.tag[data-ref="failed"],body.pc-admonitions main div#app-container a.tag[data-ref="remedy"]{color:inherit;padding:2px;border-radius:3px;background:rgba(220,20,60,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["failed"]'],body.pc-admonitions main div#app-container div[data-refs-self='["remedy"]']{padding:1.4em;border-radius:16px;background:rgba(220,20,60,0.1);outline:3px double rgba(220,20,60,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["failed"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["remedy"]']::before{content:"🔴";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions main div#app-container a.tag[data-ref="question"],body.pc-admonitions main div#app-container a.tag[data-ref="discovery"]{color:inherit;padding:2px;border-radius:3px;background:rgba(147,112,219,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["question"]'],body.pc-admonitions main div#app-container div[data-refs-self='["discovery"]']{padding:1.4em;border-radius:16px;background:rgba(147,112,219,0.1);outline:3px double rgba(147,112,219,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["question"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["discovery"]']::before{content:"🟣";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions main div#app-container a.tag[data-ref="report"],body.pc-admonitions main div#app-container a.tag[data-ref="note"],body.pc-admonitions main div#app-container a.tag[data-ref="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(160,82,45,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["report"]'],body.pc-admonitions main div#app-container div[data-refs-self='["note"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:1.4em;border-radius:16px;background:rgba(160,82,45,0.1);outline:3px double rgba(160,82,45,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["report"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["note"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["review"]']::before{content:"🟤";font-size:20px;position:absolute;right:10px;top:10px}
-  body.pc-admonitions main div#app-container a.tag[data-ref="notice"],body.pc-admonitions main div#app-container a.tag[data-ref="info"],body.pc-admonitions main div#app-container a.tag[data-ref="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(30,144,255,0.5)}
-  body.pc-admonitions main div#app-container div[data-refs-self='["notice"]'],body.pc-admonitions main div#app-container div[data-refs-self='["info"]'],body.pc-admonitions main div#app-container div[data-refs-self='["review"]']{padding:1.4em;border-radius:16px;background:rgba(30,144,255,0.1);outline:3px double rgba(30,144,255,0.7);outline-offset:3px}
-  body.pc-admonitions main div#app-container div[data-refs-self='["notice"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["info"]']::before,body.pc-admonitions main div#app-container div[data-refs-self='["review"]']::before{content:"🔵";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="caution"],body.pc-admonitions main div#app-container a.tag[data-ref*="declaration"]{color:inherit;padding:2px;border-radius:3px;background:rgba(248,180,0,0.7)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='caution'],body.pc-admonitions main div#app-container div[data-refs-self*='declaration']{padding:1.4em;border-radius:16px;background:rgba(248,180,0,0.1);outline:3px double rgba(248,180,0,0.8);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='caution']::before,body.pc-admonitions main div#app-container div[data-refs-self*='declaration']::before{content:"🟡";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref*="caution"],body.pc-admonitions div.dark-theme main div#app-container a.tag[data-ref*="declaration"]{background:rgba(255,248,220,0.3)}
+  body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self*='caution'],body.pc-admonitions div.dark-theme main div#app-container div[data-refs-self*='declaration']{background:rgba(255,248,220,0.1);outline:3px double rgba(255,248,220,0.7)}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="success"],body.pc-admonitions main div#app-container a.tag[data-ref*="facts"]{color:inherit;padding:2px;border-radius:3px;background:rgba(42,178,123,0.6)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='success'],body.pc-admonitions main div#app-container div[data-refs-self*='facts']{padding:1.4em;border-radius:16px;background:rgba(42,178,123,0.1);outline:3px double rgba(42,178,123,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='success']::before,body.pc-admonitions main div#app-container div[data-refs-self*='facts']::before{content:"🟢";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="warning"],body.pc-admonitions main div#app-container a.tag[data-ref*="learned"]{color:inherit;padding:2px;border-radius:3px;background:rgba(255,127,80,0.7)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='warning'],body.pc-admonitions main div#app-container div[data-refs-self*='learned']{padding:1.4em;border-radius:16px;background:rgba(255,127,80,0.1);outline:3px double rgba(255,127,80,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='warning']::before,body.pc-admonitions main div#app-container div[data-refs-self*='learned']::before{content:"🟠";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="failed"],body.pc-admonitions main div#app-container a.tag[data-ref*="remedy"]{color:inherit;padding:2px;border-radius:3px;background:rgba(220,20,60,0.5)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='failed'],body.pc-admonitions main div#app-container div[data-refs-self*='remedy']{padding:1.4em;border-radius:16px;background:rgba(220,20,60,0.1);outline:3px double rgba(220,20,60,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='failed']::before,body.pc-admonitions main div#app-container div[data-refs-self*='remedy']::before{content:"🔴";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="question"],body.pc-admonitions main div#app-container a.tag[data-ref*="discovery"]{color:inherit;padding:2px;border-radius:3px;background:rgba(147,112,219,0.5)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='question'],body.pc-admonitions main div#app-container div[data-refs-self*='discovery']{padding:1.4em;border-radius:16px;background:rgba(147,112,219,0.1);outline:3px double rgba(147,112,219,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='question']::before,body.pc-admonitions main div#app-container div[data-refs-self*='discovery']::before{content:"🟣";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="report"],body.pc-admonitions main div#app-container a.tag[data-ref*="note"],body.pc-admonitions main div#app-container a.tag[data-ref*="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(160,82,45,0.5)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='report'],body.pc-admonitions main div#app-container div[data-refs-self*='note'],body.pc-admonitions main div#app-container div[data-refs-self*='review']{padding:1.4em;border-radius:16px;background:rgba(160,82,45,0.1);outline:3px double rgba(160,82,45,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='report']::before,body.pc-admonitions main div#app-container div[data-refs-self*='note']::before,body.pc-admonitions main div#app-container div[data-refs-self*='review']::before{content:"🟤";font-size:20px;position:absolute;right:10px;top:10px}
+  body.pc-admonitions main div#app-container a.tag[data-ref*="notice"],body.pc-admonitions main div#app-container a.tag[data-ref*="info"],body.pc-admonitions main div#app-container a.tag[data-ref*="review"]{color:inherit;padding:2px;border-radius:3px;background:rgba(30,144,255,0.5)}
+  body.pc-admonitions main div#app-container div[data-refs-self*='notice'],body.pc-admonitions main div#app-container div[data-refs-self*='info'],body.pc-admonitions main div#app-container div[data-refs-self*='review']{padding:1.4em;border-radius:16px;background:rgba(30,144,255,0.1);outline:3px double rgba(30,144,255,0.7);outline-offset:3px}
+  body.pc-admonitions main div#app-container div[data-refs-self*='notice']::before,body.pc-admonitions main div#app-container div[data-refs-self*='info']::before,body.pc-admonitions main div#app-container div[data-refs-self*='review']::before{content:"🔵";font-size:20px;position:absolute;right:10px;top:10px}
   `);
 
   console.info(`#${pluginId}: provide style`); /* -plugin-id */
@@ -238,7 +233,7 @@ function selectAdmonition(uuid) {
       if (tag) {
         logseq.Editor.getBlock(uuid).then((e) => {
           if (e) {
-            const content = "#" + tag + " " + e.content;
+            const content = `${e.content} #${tag} `;
             logseq.Editor.updateBlock(uuid, content).then(() => {
               logseq.Editor.insertBlock(uuid, "");
             });
@@ -254,7 +249,7 @@ function selectAdmonition(uuid) {
 //main
 const main = async () => {
   console.info(`#${pluginId}: MAIN`); /* -plugin-id */
-  ProvideStyle(logseq.settings);
+  ProvideStyle();
   refreshSettings(logseq.settings);
 };
 //main end
@@ -265,7 +260,7 @@ const after = async () => {
   console.info(`#${pluginId}: AFTER`); /* -plugin-id */
 
   settingUI(); /* -setting */
-  
+
   /* toolbarItem */
   logseq.App.registerUIItem("toolbar", {
     key: pluginId,
@@ -298,11 +293,11 @@ const after = async () => {
   logseq.beforeunload(async () => {
     parent.document.body.classList.remove('is-plugin-panel-coloring-enabled');
   });
-  logseq.onSettingsChanged((settings, oldSettings) => {
-    if (settings !== oldSettings) {
+  logseq.onSettingsChanged((settings, oldSet) => {
+    if (settings !== oldSet) {
       console.log(`#${pluginId}: onSettingsChanged`);
       refreshSettings(settings);
-      onSettingsChangedCallback(settings, oldSettings);
+      onSettingsChangedCallback(settings, oldSet);
     }
   });
 
@@ -311,25 +306,25 @@ const after = async () => {
 
 
 // Setting changed
-const onSettingsChangedCallback = (newSettings: any, oldSettings: any) => {
-  if (oldSettings.admonitions !== "disable" && newSettings.admonitions === "disable") {
+const onSettingsChangedCallback = (newSet: any, oldSet: any) => {
+  if (oldSet.admonitions !== "disable" && newSet.admonitions === "disable") {
     parent.document.body.classList.remove('pc-admonitions');
-  } else if (oldSettings.admonitions !== "enable" && newSettings.admonitions === "enable") {
+  } else if (oldSet.admonitions !== "enable" && newSet.admonitions === "enable") {
     parent.document.body.classList.add('pc-admonitions');
   }
-  if (oldSettings.rainbowJournal !== "disable" && newSettings.rainbowJournal === "disable") {
+  if (oldSet.rainbowJournal !== "disable" && newSet.rainbowJournal === "disable") {
     parent.document.body.classList.remove('pc-rainbowJournal');
-  } else if (oldSettings.rainbowJournal !== "enable" && newSettings.rainbowJournal === "enable") {
+  } else if (oldSet.rainbowJournal !== "enable" && newSet.rainbowJournal === "enable") {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
-  if (oldSettings.todayJournal !== "disable" && newSettings.todayJournal === "disable") {
+  if (oldSet.todayJournal !== "disable" && newSet.todayJournal === "disable") {
     parent.document.body.classList.remove('pc-todayJournal');
-  } else if (oldSettings.todayJournal !== "enable" && newSettings.todayJournal === "enable") {
+  } else if (oldSet.todayJournal !== "enable" && newSet.todayJournal === "enable") {
     parent.document.body.classList.add('pc-todayJournal');
   }
-  if (oldSettings.todayDayOfWeek === "English" && newSettings.todayDayOfWeek === "disable") {
+  if (oldSet.todayDayOfWeek === "English" && newSet.todayDayOfWeek === "disable") {
     parent.document.body.classList.remove('pc-todayDayOfWeek-en');
-  } else if (oldSettings.todayDayOfWeek !== "enable" && newSettings.todayDayOfWeek === "English") {
+  } else if (oldSet.todayDayOfWeek !== "enable" && newSet.todayDayOfWeek === "English") {
     parent.document.body.classList.add('pc-todayDayOfWeek-en');
   }
 }

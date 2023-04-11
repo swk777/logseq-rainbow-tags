@@ -32,7 +32,7 @@
 
 ### Admonition panel by tag
 
-> Nest with the tag as the parent. Combining two tags will make them invalid. It is possible to have a panel within a panel.
+> Nest with the tag as the parent.  It is possible to have a panel within a panel.
 
     🔴FAILED / REMEDY
     🟠WARNING / LEARNED
