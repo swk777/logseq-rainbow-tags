@@ -92,7 +92,7 @@
 
 ## Other my plugins
 
-- [SomeMenuExtemder](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
+- [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
 - [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
 - [Page-tags and Hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
 - [Rakuten-books](https://github.com/YU000jp/logseq-plugin-rakuten-books) (Only for Japanese site)
