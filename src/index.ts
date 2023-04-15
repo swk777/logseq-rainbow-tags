@@ -50,20 +50,20 @@ body[data-page="page"] div#main-content-container h1.page-title span[data-ref="$
 body[data-page="page"] div#main-content-container div.page-blocks-inner div#${CSS.escape(page.name)} div.page-properties{background:${hex2rgba(page.color, 0.2)}}
 div#left-sidebar div.favorites li.favorite-item[data-ref*="${CSS.escape(page.name)}"i] span.page-title{border-bottom:2px solid ${hex2rgba(page.color, 1)}}`;
 
-  //favorites:has(title) + recent display none (overflow CSS)
-  const FavoriteOverflowCSS = (page: IPage) => {
-    const favorites = parent.document.querySelector('div.favorites');
-    if (favorites) {
-      const favoriteItems = favorites.querySelectorAll(`li.favorite-item[data-ref*="${CSS.escape(page.name)}"i]`);
-      if (favoriteItems.length > 0) {
-        const nextSibling = favorites.nextElementSibling;
-        if (nextSibling && nextSibling.classList.contains('recent')) {
-          const recentItems = nextSibling.querySelectorAll(`li[data-ref*="${CSS.escape(page.name)}" i].recent-item.select-none`);
-          recentItems.forEach(item => item.classList.add('hidden'));
-        }
+//favorites:has(title) + recent display none (overflow CSS)
+const FavoriteOverflowCSS = (page: IPage) => {
+  const favorites = parent.document.querySelector('div.favorites');
+  if (favorites) {
+    const favoriteItems = favorites.querySelectorAll(`li.favorite-item[data-ref*="${CSS.escape(page.name)}"i]`);
+    if (favoriteItems.length > 0) {
+      const nextSibling = favorites.nextElementSibling;
+      if (nextSibling && nextSibling.classList.contains('recent')) {
+        const recentItems = nextSibling.querySelectorAll(`li[data-ref*="${CSS.escape(page.name)}" i].recent-item.select-none`);
+        recentItems.forEach(item => item.classList.add('hidden'));
       }
     }
-  };
+  }
+};
 
 //for tag and page
 const refreshSettings = (e) => {
@@ -128,33 +128,21 @@ async function ProvideStyle() {
   body[data-page="home"] div#today-queries>div.lazy-visibility{min-height:unset!important}body[data-page="home"] div#today-queries>div.lazy-visibility>div.shadow{display:none}body[data-page="home"] div#today-queries div.color-level div.blocks-container,body[data-page="home"] div#today-queries div.color-level{background-color:unset}
   `);
   //set today journal coloring
-  if (logseq.settings?.todayJournal === "enable") {
+  if (logseq.settings?.todayJournal) {
     parent.document.body.classList.add('pc-todayJournal');
   }
   logseq.provideStyle(`body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:first-child{border-radius:0.4em;background:rgba(251,255,177,0.2);outline:3px double rgba(251,255,177,0.6);outline-offset:3px}
   body[data-page="home"].pc-todayJournal div.light-theme div#journals div.journal-item.content:nth-of-type(2){border-radius:0.4em;background:rgba(144,238,144,0.16);outline:3px double rgba(144,238,144,0.6);outline-offset:3px}
   `);
 
-  //set today journal day of week 
-  if (logseq.settings?.todayDayOfWeek === "English") {
-    parent.document.body.classList.add('pc-todayDayOfWeek-en');
-  }
-  const date = new Date();
-  const todayDayOfWeekStr = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."][date.getDay()];
-  date.setDate(date.getDate() - 1);
-  const yesterdayDayOfWeekStr = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."][date.getDay()];
-  logseq.provideStyle(`
-  body[data-page="home"].pc-todayDayOfWeek-en div#journals div.journal-item.content:first-child a.journal-title h1.title:after{margin-left:0.8em;content:"${todayDayOfWeekStr}"}
-  body[data-page="home"].pc-todayDayOfWeek-en div#journals div.journal-item.content:nth-of-type(2) a.journal-title h1.title:after{margin-left:0.8em;content:"${yesterdayDayOfWeekStr}"}
-  `);
 
   //set rainbow-journal
-  if (logseq.settings?.rainbowJournal === "enable") {
+  if (logseq.settings?.rainbowJournal) {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
 
   //set admonitions
-  if (logseq.settings?.admonitions === "enable") {
+  if (logseq.settings?.admonitions) {
     parent.document.body.classList.add('pc-admonitions');
   }
   logseq.provideStyle(String.raw`
@@ -307,25 +295,20 @@ const after = async () => {
 
 // Setting changed
 const onSettingsChangedCallback = (newSet: any, oldSet: any) => {
-  if (oldSet.admonitions !== "disable" && newSet.admonitions === "disable") {
+  if (oldSet.admonitions !== false && newSet.admonitions === false) {
     parent.document.body.classList.remove('pc-admonitions');
-  } else if (oldSet.admonitions !== "enable" && newSet.admonitions === "enable") {
+  } else if (oldSet.admonitions !== true && newSet.admonitions === true) {
     parent.document.body.classList.add('pc-admonitions');
   }
-  if (oldSet.rainbowJournal !== "disable" && newSet.rainbowJournal === "disable") {
+  if (oldSet.rainbowJournal !== false && newSet.rainbowJournal === false) {
     parent.document.body.classList.remove('pc-rainbowJournal');
-  } else if (oldSet.rainbowJournal !== "enable" && newSet.rainbowJournal === "enable") {
+  } else if (oldSet.rainbowJournal !== true && newSet.rainbowJournal === true) {
     parent.document.body.classList.add('pc-rainbowJournal');
   }
-  if (oldSet.todayJournal !== "disable" && newSet.todayJournal === "disable") {
+  if (oldSet.todayJournal !== false && newSet.todayJournal === false) {
     parent.document.body.classList.remove('pc-todayJournal');
-  } else if (oldSet.todayJournal !== "enable" && newSet.todayJournal === "enable") {
+  } else if (oldSet.todayJournal !== true && newSet.todayJournal === true) {
     parent.document.body.classList.add('pc-todayJournal');
-  }
-  if (oldSet.todayDayOfWeek === "English" && newSet.todayDayOfWeek === "disable") {
-    parent.document.body.classList.remove('pc-todayDayOfWeek-en');
-  } else if (oldSet.todayDayOfWeek !== "enable" && newSet.todayDayOfWeek === "English") {
-    parent.document.body.classList.add('pc-todayDayOfWeek-en');
   }
 }
 
