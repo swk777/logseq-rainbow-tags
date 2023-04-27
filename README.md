@@ -79,7 +79,11 @@
 
 > possible to open settings from button for this plugin on upper right toolbar
 
+ <details><summary>Summary</summary>
+
 ![image](https://user-images.githubusercontent.com/111847207/224518718-de37c55f-33d7-48cd-987a-78721367a8c6.png)
+
+</details>
 
 ## Install from Marketplace
 
