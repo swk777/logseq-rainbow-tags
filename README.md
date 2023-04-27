@@ -1,6 +1,6 @@
 # Logseq Plugin: Panel Coloring
 
-> Accentuate specified pages or tagged blocks.
+> Accentuate specified pages or tagged blocks by coloring.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-panel-coloring)](https://github.com/YU000jp/logseq-plugin-panel-coloring/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-panel-coloring?color=blue)](https://github.com/YU000jp/logseq-plugin-panel-coloring/blob/main/LICENSE)
