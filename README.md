@@ -6,6 +6,8 @@
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-panel-coloring?color=blue)](https://github.com/YU000jp/logseq-plugin-panel-coloring/blob/main/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-panel-coloring/total.svg)](https://github.com/YU000jp/logseq-plugin-panel-coloring/releases)
 
+## Functions
+
 ### Page coloring (title and contents)
 
 > possible to set up to 12 pages.
@@ -13,15 +15,11 @@
 
 ### Demo [light theme]
 
-![Animation6w21](https://user-images.githubusercontent.com/111847207/224817899-44220e25-3c28-4ea6-9f9a-5892241df95a.gif)
+![image](https://user-images.githubusercontent.com/111847207/224817899-44220e25-3c28-4ea6-9f9a-5892241df95a.gif)
 
- <details><summary>Summary</summary>
-
-### [left sidebar] color underline on favorite list
+#### [left sidebar] color underline on favorite list
 
 ![image](https://user-images.githubusercontent.com/111847207/224722704-45ab6b09-3906-4404-949a-b6ace2745860.png)
-
-</details>
 
 ### Tag coloring
 
@@ -40,18 +38,18 @@
     🟣QUESTION / DISCOVERY
     🟤REPORT / NOTE
 
-#### Admonition panel Selector
+##### Admonition panel Selector
 
 - slash command => `/🌈select admonition panel`
 - bullet contextmenu => `🌈select admonition`
 
  <details><summary>Demo</summary>
 
-#### demo [light theme]
+##### demo [light theme]
 
 ![image](https://user-images.githubusercontent.com/111847207/207467377-e307a412-b9c1-4889-b110-3f69e3f00007.png)
 
-#### demo [dark theme]
+##### demo [dark theme]
 
 ![image](https://user-images.githubusercontent.com/111847207/207467439-26c7a35a-4cb7-4f60-8807-68d1832d4656.png)
 
