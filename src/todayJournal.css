@@ -1,0 +1,13 @@
+body[data-page="home"] div.light-theme div#journals div.journal-item.content:first-child {
+    border-radius: 0.4em;
+    background: rgba(251, 255, 177, 0.2);
+    outline: 3px double rgba(251, 255, 177, 0.6);
+    outline-offset: 3px
+}
+
+body[data-page="home"] div.light-theme div#journals div.journal-item.content:nth-of-type(2) {
+    border-radius: 0.4em;
+    background: rgba(144, 238, 144, 0.16);
+    outline: 3px double rgba(144, 238, 144, 0.6);
+    outline-offset: 3px
+}

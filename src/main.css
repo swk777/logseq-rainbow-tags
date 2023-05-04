@@ -1,0 +1,44 @@
+body[data-page="home"] div#today-queries>div.lazy-visibility {
+    min-height: unset !important
+}
+
+body[data-page="home"] div#today-queries>div.lazy-visibility>div.shadow {
+    display: none
+}
+
+body[data-page="home"] div#today-queries :is(div.color-level div.blocks-container, div.color-level) {
+    background-color: unset
+}
+
+body[data-page="page"] div#app-container :is(div.page-blocks-inner, div.page-properties),
+div#app-container :is(h1, h2, h3, h4, h5, h6).with-bg-color,
+div#app-container div.embed-block,
+div.relative div.lazy-visibility div.references div.references-blocks div.content>div>div.lazy-visibility,
+div.references div.references-blocks div.content>div>div.lazy-visibility {
+    outline-offset: 2px;
+    outline: 2px solid var(--ls-table-tr-even-background-color);
+    border-radius: 10px
+}
+
+article div[data-id="logseq-plugin-panel-coloring"].panel-wrap :is(div[data-key="heading001"], div[data-key="heading002"], div[data-key="heading003"], div[data-key="heading004"], div[data-key="heading005"], div[data-key="heading006"], div[data-key="heading007"], div[data-key="heading008"], div[data-key="heading009"], div[data-key="heading0010"], div[data-key="heading0011"], div[data-key="heading0012"]) {
+    color: green
+}
+
+article div[data-id="logseq-plugin-panel-coloring"].panel-wrap :is(div[data-key="heading101"], div[data-key="heading102"], div[data-key="heading103"], div[data-key="heading104"], div[data-key="heading105"], div[data-key="heading106"], div[data-key="heading107"], div[data-key="heading108"], div[data-key="heading109"], div[data-key="heading1010"], div[data-key="heading1011"], div[data-key="heading1012"]) {
+    color: orange
+}
+
+article div[data-id="logseq-plugin-panel-coloring"].panel-wrap :is(div[data-key="pn1"], div[data-key="pn2"], div[data-key="pn3"], div[data-key="pn4"], div[data-key="pn5"], div[data-key="pn6"], div[data-key="pn7"], div[data-key="pn8"], div[data-key="pn9"], div[data-key="pn10"], div[data-key="pn11"], div[data-key="pn12"], div[data-key="tn1"], div[data-key="tn2"], div[data-key="tn3"], div[data-key="tn4"], div[data-key="tn5"], div[data-key="tn6"], div[data-key="tn7"], div[data-key="tn8"], div[data-key="tn9"], div[data-key="tn10"], div[data-key="tn11"], div[data-key="tn12"]) {
+    width: 48%
+}
+
+body.is-awUi-enabled article div[data-id="logseq-plugin-panel-coloring"].panel-wrap :is(div[data-key="pc1"], div[data-key="pc2"], div[data-key="pc3"], div[data-key="pc4"], div[data-key="pc5"], div[data-key="pc6"], div[data-key="pc7"], div[data-key="pc8"], div[data-key="pc9"], div[data-key="pc10"], div[data-key="pc11"], div[data-key="pc12"], div[data-key="tc1"], div[data-key="tc2"], div[data-key="tc3"], div[data-key="tc4"], div[data-key="tc5"], div[data-key="tc6"], div[data-key="tc7"], div[data-key="tc8"], div[data-key="tc9"], div[data-key="tc10"], div[data-key="tc11"], div[data-key="tc12"]) {
+    left: 48%;
+    margin-top: -4.4em
+}
+
+body:not(.is-awUi-enabled) article div[data-id="logseq-plugin-panel-coloring"].panel-wrap :is(div[data-key="pc1"], div[data-key="pc2"], div[data-key="pc3"], div[data-key="pc4"], div[data-key="pc5"], div[data-key="pc6"], div[data-key="pc7"], div[data-key="pc8"], div[data-key="pc9"], div[data-key="pc10"], div[data-key="pc11"], div[data-key="pc12"], div[data-key="tc1"], div[data-key="tc2"], div[data-key="tc3"], div[data-key="tc4"], div[data-key="tc5"], div[data-key="tc6"], div[data-key="tc7"], div[data-key="tc8"], div[data-key="tc9"], div[data-key="tc10"], div[data-key="tc11"], div[data-key="tc12"]) {
+    left: 48%;
+    position: absolute;
+    margin-top: -5.4em
+}

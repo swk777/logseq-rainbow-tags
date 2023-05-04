@@ -1,0 +1,27 @@
+div#app-container div.block-children [level="3"] {
+    border-right: 4px solid #ff00005c
+}
+
+div#app-container div.block-children [level="4"] {
+    border-right: 6px solid #ec87225e
+}
+
+div#app-container div.block-children [level="5"] {
+    border-right: 8px solid #ffff0052
+}
+
+div#app-container div.block-children [level="6"] {
+    border-right: 10px solid #65d95b7a
+}
+
+div#app-container div.block-children [level="7"] {
+    border-right: 12px solid #2ca0df5e
+}
+
+div#app-container div.block-children [level="8"] {
+    border-right: 14px solid #9f8af061
+}
+
+div#app-container div.block-children [level="9"] {
+    border-right: 16px solid #f15bf74f
+}

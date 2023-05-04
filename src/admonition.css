@@ -1,0 +1,169 @@
+div#app-container :is(a.tag[data-ref*="caution"], a.tag[data-ref*="declaration"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(248, 180, 0, 0.7)
+}
+
+div#app-container :is(div[data-refs-self*='caution'], div[data-refs-self*='declaration']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(248, 180, 0, 0.1);
+    outline: 3px double rgba(248, 180, 0, 0.8);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='caution']::before, div[data-refs-self*='declaration']::before) {
+    content: "🟡";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div.dark-theme div#app-container :is(a.tag[data-ref*="caution"], a.tag[data-ref*="declaration"]) {
+    background: rgba(255, 248, 220, 0.3)
+}
+
+div.dark-theme div#app-container :is(div[data-refs-self*='caution'], div[data-refs-self*='declaration']) {
+    background: rgba(255, 248, 220, 0.1);
+    outline: 3px double rgba(255, 248, 220, 0.7)
+}
+
+div#app-container :is(a.tag[data-ref*="success"], a.tag[data-ref*="facts"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(42, 178, 123, 0.6)
+}
+
+div#app-container :is(div[data-refs-self*='success'], div[data-refs-self*='facts']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(42, 178, 123, 0.1);
+    outline: 3px double rgba(42, 178, 123, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='success']::before, div[data-refs-self*='facts']::before) {
+    content: "🟢";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div#app-container :is(a.tag[data-ref*="warning"], a.tag[data-ref*="learned"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(255, 127, 80, 0.7)
+}
+
+div#app-container :is(div[data-refs-self*='warning'], div[data-refs-self*='learned']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(255, 127, 80, 0.1);
+    outline: 3px double rgba(255, 127, 80, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='warning']::before, div[data-refs-self*='learned']::before) {
+    content: "🟠";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div#app-container :is(a.tag[data-ref*="failed"], a.tag[data-ref*="remedy"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(220, 20, 60, 0.5)
+}
+
+div#app-container :is(div[data-refs-self*='failed'], div[data-refs-self*='remedy']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(220, 20, 60, 0.1);
+    outline: 3px double rgba(220, 20, 60, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='failed']::before, div[data-refs-self*='remedy']::before) {
+    content: "🔴";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div#app-container :is(a.tag[data-ref*="question"], a.tag[data-ref*="discovery"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(147, 112, 219, 0.5)
+}
+
+div#app-container :is(div[data-refs-self*='question'], div[data-refs-self*='discovery']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(147, 112, 219, 0.1);
+    outline: 3px double rgba(147, 112, 219, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='question']::before, div[data-refs-self*='discovery']::before) {
+    content: "🟣";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div#app-container :is(a.tag[data-ref*="report"], a.tag[data-ref*="note"], a.tag[data-ref*="review"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(160, 82, 45, 0.5)
+}
+
+div#app-container :is(div[data-refs-self*='report'], div[data-refs-self*='note'], div[data-refs-self*='review']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(160, 82, 45, 0.1);
+    outline: 3px double rgba(160, 82, 45, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='report']::before, div[data-refs-self*='note']::before, div[data-refs-self*='review']::before) {
+    content: "🟤";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+div#app-container :is(a.tag[data-ref*="notice"], a.tag[data-ref*="info"], a.tag[data-ref*="review"]) {
+    color: inherit;
+    padding: 2px;
+    border-radius: 3px;
+    background: rgba(30, 144, 255, 0.5)
+}
+
+div#app-container :is(div[data-refs-self*='notice'], div[data-refs-self*='info'], div[data-refs-self*='review']) {
+    padding: 1.4em;
+    border-radius: 16px;
+    background: rgba(30, 144, 255, 0.1);
+    outline: 3px double rgba(30, 144, 255, 0.7);
+    outline-offset: 3px
+}
+
+div#app-container :is(div[data-refs-self*='notice']::before, div[data-refs-self*='info']::before, div[data-refs-self*='review']::before) {
+    content: "🔵";
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
