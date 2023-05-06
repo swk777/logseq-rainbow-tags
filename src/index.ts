@@ -123,8 +123,8 @@ interface ITag {
   name: string;
   color: string;
 }
-const generateTagStyle = (tag: ITag) => `div#app-container a.tag[data-ref*="${CSS.escape(tag.name)}"]{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color, 0.3)}}
-div#app-container div[data-refs-self*="${CSS.escape(tag.name)}"]{padding:1.4em;border-radius:16px;background:${hex2rgba(tag.color, 0.15)}}`;
+const generateTagStyle = (tag: ITag) => `div#app-container a.tag[data-ref*='"${CSS.escape(tag.name)}"']{color:inherit;padding:2px;border-radius:3px;background:${hex2rgba(tag.color, 0.3)}}
+div#app-container div[data-refs-self*='"${CSS.escape(tag.name)}"']{padding:1.4em;border-radius:16px;background:${hex2rgba(tag.color, 0.15)}}`;
 
 //for page
 interface IPage {
